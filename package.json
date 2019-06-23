@@ -1,0 +1,38 @@
+{
+  "name": "js-practice",
+  "version": "0.0.1",
+  "description": "This package contains tasks which help you improve your coding skills.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milestone-computer-science-society/js-practice.git"
+  },
+  "keywords": [
+    "javascript",
+    "practice",
+    "tests",
+    "framework",
+    "programmng",
+    "challenge",
+    "nodejs"
+  ],
+  "author": "DaniFoldi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/milestone-computer-science-society/js-practice/issues"
+  },
+  "homepage": "https://github.com/milestone-computer-science-society/js-practice#readme",
+  "dependencies": {
+    "carbon-components": "^10.3.1",
+    "codemirror": "^5.48.0",
+    "express": "^4.17.1",
+    "log-symbols": "^3.0.0",
+    "open": "^6.3.0",
+    "should": "^13.2.3",
+    "webpack": "^4.35.0"
+  }
+}
