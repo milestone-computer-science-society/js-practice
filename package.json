@@ -34,5 +34,8 @@
     "open": "^6.3.0",
     "should": "^13.2.3",
     "webpack": "^4.35.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.5"
   }
 }

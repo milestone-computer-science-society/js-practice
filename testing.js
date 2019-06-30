@@ -12,7 +12,8 @@ module.exports = (file, challenge) => {
         eval(content + '')
         break
       case 'vm':
-        const output = ""
+        let output = ''
+        const log = console.log
         console.log = (...values) => {
           for (let i = 0; i < values.length; i++) {
             if (i > 0) {
@@ -23,8 +24,9 @@ module.exports = (file, challenge) => {
           output += '\n'
         }
         vm.runInThisContext(content)
+        console.log = log
         break
-      case module:
+    case 'module':
         result = require(file)
         break
     }
@@ -34,16 +36,20 @@ module.exports = (file, challenge) => {
   }
   console.log(logSymbols.info, 'Finished running your code.')
   console.log(logSymbols.info, 'Starting tests.')
+  let solution
   try {
-    const success = challenge.verify()
-    if (success) {
+    solution = challenge.verify()
+    if (solution.success) {
       console.log(logSymbols.info, 'All tests have passed.')
     } else {
       console.log(logSymbols.warning, 'Some tests have failed.')
+    }
+    if (typeof challenge.stop !== 'undefined') {
+      challenge.stop()
     }
   } catch (error) {
     console.log(logSymbols.error, 'Your code has produced an error: ')
     console.log(logSymbols.error, error)
   }
-  console.log(logSymbols.info, 'Finished tests.')
+  return solution
 }
