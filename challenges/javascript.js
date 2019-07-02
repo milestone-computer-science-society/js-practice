@@ -174,6 +174,31 @@ module.exports = {
         should(perfectnumber(721)).be.false()
       },
       mode: 'vm'
+    },
+    polygonangle: {
+      title: 'Angle of regular polygon',
+      description: 'Interior angle of a regular polygon',
+      task: 'Create a function called "angle" that returns the value of one angle of a regular polygon with the side count given as a parameter',
+      verify: output => {
+        should(angle(3)).be.exactly(60)
+        should(angle(4)).be.exactly(90)
+        should(angle(5)).be.exactly(108)
+        should(angle(8)).be.exaclty(135)
+        should(angle(18)).be.exactly(160)
+      },
+      mode: 'vm'
+    },
+    papersize: {
+      title: 'Size of folded paper',
+      description: 'Calculate size of paper folded in half multiple times',
+      task: 'Create a function called "papersize" that receives the fold count as a parameter and returns the size of a unit paper folded in half that many times',
+      verify: output => {
+        should(papersize(0)).be.exactly(1)
+        should(papersize(2)).be.exactly(0.25)
+        should(papersize(4)).be.exactly(0.0625)
+        should(papersize(6)).be.exactly(0.015625)
+      },
+      mode: 'vm'
     }
   },
   date: {
