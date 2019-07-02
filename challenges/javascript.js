@@ -203,6 +203,81 @@ module.exports = {
         should(papersize(6)).be.exactly(0.015625)
       },
       mode: 'vm'
+    },
+    extension: {
+      title: 'File extension',
+      description: 'Get the extension of a file',
+      task: 'Create a function called "extension" that receives a filename as a parameter and returns the extension of the file',
+      verify: output => {
+        should(extension("image.jpeg")).be.exactly("jpeg")
+        should(extension("music.mp3")).be.exactly("mp3")
+        should(extension("web.html")).be.exactly("html")
+        should(extension("demo.pptx")).be.exactly("pptx")
+      },
+      mode: 'vm'
+    },
+    sequence: {
+      title: 'String sequence',
+      description: 'String multiple times',
+      task: 'Create a function called "repeat" that receives a string and a repeat count as an input, and returns the string appended to itself as many times as needed',
+      verify: output => {
+        should(repeat("a", 3)).be.exactly("aaa")
+        should(repeat("Abcd", 4)).be.exactly("AbcdAbcdAbcdAbcd")
+        should(repeat("x y ", 6)).be.exactly("x y x y x y x y x y x y ")
+      },
+      mode: 'vm'
+    },
+    lowercase: {
+      title: 'Lowercase string',
+      description: 'Lowercase version of a string',
+      task: 'Create a function called "lowercase" which returns the received input string converted into lowercase',
+      verify: output => {
+        should(lowercase("HELLO")).be.exactly("hello")
+        should(lowercase("so what")).be.exactly("so what")
+        should(lowercase("Human")).be.exactly("human")
+      },
+      mode: 'vm'
+    },
+    ordinal: {
+      title: 'Ordinal number',
+      description: 'Human readable ordinal number',
+      task: 'Create a function called "ordinal" which returns the ordinal number corresponding to the cardinal number given as a parameter',
+      verify: output => {
+        should(ordinal(1)).be.exactly('1st')
+        should(ordinal(2)).be.exactly('2nd')
+        should(ordinal(3)).be.exactly('3rd')
+        should(ordinal(4)).be.exactly('4th')
+        should(ordinal(10)).be.exactly('10th')
+        should(ordinal(11)).be.exactly('11th')
+        should(ordinal(12)).be.exactly('12th')
+        should(ordinal(13)).be.exactly('13th')
+        should(ordinal(21)).be.exactly('21st')
+        should(ordinal(22)).be.exactly('22nd')
+        should(ordinal(23)).be.exactly('23rd')
+      },
+      mode: 'vm'
+    },
+    leadingzero: {
+      title: 'Leading zeros',
+      description: 'Leading zeros for fixed length',
+      task: 'Create a function called "leadingzero" that takes two parameters: a number and a wanted length. Return a string with leading zeros',
+      verify: output => {
+        should(leadingzero(10, 3)).be.exactly('010')
+        should(leadingzero(0, 2)).be.exactly('00')
+        should(leadingzero(5678.3, 8)).be.exactly('005678.3')
+      },
+      mode: 'vm'
+    },
+    htmlclean: {
+      title: 'Clean HTML tags',
+      description: 'Remove XML/HTML tags from text',
+      task: 'Create a function called "clean" that returns the cleaned version (<> removed) of the string received as a parameter',
+      verify: output => {
+        should(clean('<html><head>')).be.exactly("htmlhead")
+        should(clean('Lorem ipsum')).be.exactly("Lorem ipsum")
+        should(clean('<button>Click me</button>')).be.exactly("buttonClick me/button")
+      },
+      mode: 'vm'
     }
   },
   date: {
