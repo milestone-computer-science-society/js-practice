@@ -68,6 +68,37 @@ module.exports = {
         should(Object.keys(details).length).be.aboveOrEqual(5)
       },
       mode: 'vm'
+    },
+    swap: {
+      title: 'Array swapping',
+      description: 'Swap two elements of an array',
+      task: 'Create a function called "swap" that receives 3 parameters: an array, and two indices, which represent the elements that should be swapped',
+      verify: output => {
+        let a = swap([5, 6, 7, 8])
+        let b = [5, 8, 7, 6]
+        should(a).be.deepEqual(b)
+      },
+      mode: 'vm'
+    },
+    triangle: {
+      title: 'Triangle properties',
+      description: 'Calculate perimeter and area of triangle',
+      task: 'Create a function called "triangle" that receives the 3 lengths of the sides of a triangle, and returns an object, with two properties, the area and perimetre of the triangle',
+      verify: output => {
+        should(triangle(5, 6, 7)).deepEqual({area: Math.sqrt(9*4*3*2), perimeter: 18})
+        should(triangle(6, 8, 10)).deepEqual({area: Math.sqrt(12*6*4*2), perimeter: 24})
+      },
+      mode: 'vm'
+    },
+    circle: {
+      title: 'Circle properties',
+      description: 'Calculate area and circumference of circle',
+      task: 'Create a function called "circle" that receives the radius of a circle as a parameter, and returns an object with the area and circumference as properties',
+      verify: output => {
+        should(circle(8)).deepEqual({area: Math.PI * 8 * 8, circumference: 2 * 8 * Math.PI})
+        should(circle(40)).deepEqual({area: Math.PI * 40 * 40, circumference: 2 * 40 * Math.PI})
+      },
+      mode: 'vm'
     }
   },
   date: {
