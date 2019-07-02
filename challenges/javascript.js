@@ -36,6 +36,7 @@ module.exports = {
       verify: output => {
         should(sum(5, 6, -8)).be.exactly(3)
         should(sum(-7, 452, 19.7)).be.exactly(464.7)
+        should(sum(3, 436, 300)).be.exactly(739)
       },
       mode: 'eval'
     },
@@ -46,6 +47,7 @@ module.exports = {
       verify: output => {
         should(max([5, -6, 4.3, 19, 85, 10])).be.exactly(4)
         should(max([7, 4, 0, 4])).be.exactly(0)
+        should(max([2, 4, 18, -3])).be.exactly(2)
       },
       mode: 'eval'
     },
@@ -74,9 +76,11 @@ module.exports = {
       description: 'Swap two elements of an array',
       task: 'Create a function called "swap" that receives 3 parameters: an array, and two indices, which represent the elements that should be swapped',
       verify: output => {
-        let a = swap([5, 6, 7, 8])
+        let a = swap([5, 6, 7, 8], 1, 3)
         let b = [5, 8, 7, 6]
         should(a).deepEqual(b)
+        let c = swap([5, 8, 6, 7], 2, 3)
+        should(b).deepEqual(c)
       },
       mode: 'vm'
     },
