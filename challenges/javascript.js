@@ -32,7 +32,7 @@ module.exports = {
     sum: {
       title: 'Create a function',
       description: 'A simple sum function',
-      task: 'Create the funcion "sum" that sums the 3 parameters it receives',
+      task: 'Create the funcion "sum" that returns the sum of the 3 parameters it receives',
       verify: output => {
         should(sum(5, 6, -8)).be.exactly(3)
         should(sum(-7, 452, 19.7)).be.exactly(464.7)
@@ -76,7 +76,7 @@ module.exports = {
       verify: output => {
         let a = swap([5, 6, 7, 8])
         let b = [5, 8, 7, 6]
-        should(a).be.deepEqual(b)
+        should(a).deepEqual(b)
       },
       mode: 'vm'
     },
@@ -97,6 +97,81 @@ module.exports = {
       verify: output => {
         should(circle(8)).deepEqual({area: Math.PI * 8 * 8, circumference: 2 * 8 * Math.PI})
         should(circle(40)).deepEqual({area: Math.PI * 40 * 40, circumference: 2 * 40 * Math.PI})
+      },
+      mode: 'vm'
+    },
+    temperature: {
+      title: 'Temperature conversion',
+      description: 'Convert between Farenheit and Celsius',
+      task: 'Create a function called "convert" that receives a string as an input: all but the last character are part of a floating number and the last character specifies the scale. Return the temperature in the other scale using the same format',
+      verify: output => {
+        should(convert("30.0C")).equal("86F")
+        should(convert("0C")).equal("32F")
+        should(convert("12.4C")).equal("54.32F")
+        should(convert("122F")).equal("50C")
+        should(convert("-31F")).equal("-35C")
+      },
+      mode: 'vm'
+    },
+    vowel: {
+      title: 'Find vowels',
+      description: 'Find whether a letter is a vowel',
+      task: 'Create a function called "vowel" that returns a boolean indicating whether a lowercase letter is a vowel or not',
+      verify: output => {
+        should(vowel("a")).be.true()
+        should(wovel("e")).be.true()
+        should(vowel("u")).be.true()
+        should(vowel("o")).be.true()
+        should(vowel("i")).be.true()
+        should(vowel("b")).be.false()
+        should(vowel("m")).be.false()
+        should(vowel("x")).be.false()
+      },
+      mode: 'vm'
+    },
+    happynumber: {
+      title: 'Happy number',
+      description: 'Find whether a number is happy or not',
+      task: 'Create a function called "happynumber" that returns a boolean indicating whether the number received as a parameter is happy or not',
+      verify: output => {
+        should(happy(1)).be.true()
+        should(happy(19)).be.true()
+        should(happy(44)).be.true()
+        should(happy(5)).be.false()
+        should(happy(12)).be.false()
+        should(happy(255)).be.false()
+      },
+      mode: 'vm'
+    },
+    prime: {
+      title: 'Prime',
+      description: 'Find whether a number is prime or not',
+      task: 'Create a function called "prime" that returns a boolean indicating whether the number received as a parameter is prime or not',
+      verify: output => {
+        should(prime(2)).be.true()
+        should(prime(7)).be.true()
+        should(prime(11)).be.true()
+        should(prime(5119)).be.true()
+        should(prime(1)).be.false()
+        should(prime(12)).be.false()
+        should(prime(81)).be.false()
+        should(prime(5463)).be.false()
+      },
+      mode: 'vm'
+    },
+    perfectnumber: {
+      title: 'Perfect number',
+      description: 'Find whether a number is perfect or not',
+      task: 'Create a function called "perfectnumber" that returns a boolean indicating whether the number received as a parameter is a perfect number or not',
+      verify: output => {
+        should(perfectnumber(6)).be.true()
+        should(perfectnumber(28)).be.true()
+        should(perfectnumber(496)).be.true()
+        should(perfectnumber(8128)).be.true()
+        should(perfectnumber(20)).be.false()
+        should(perfectnumber(46)).be.false()
+        should(perfectnumber(220)).be.false()
+        should(perfectnumber(721)).be.false()
       },
       mode: 'vm'
     }
