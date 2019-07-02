@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "build": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -32,10 +33,15 @@
     "express": "^4.17.1",
     "log-symbols": "^3.0.0",
     "open": "^6.3.0",
-    "should": "^13.2.3",
-    "webpack": "^4.35.0"
+    "should": "^13.2.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "babel-polyfill": "^6.26.0",
+    "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
   }
 }
