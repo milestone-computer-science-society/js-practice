@@ -12,16 +12,16 @@ module.exports = async (file, challenge) => {
         eval(content + '')
         break
       case 'vm':
-        let output = ''
+        result = ''
         const log = console.log
         console.log = (...values) => {
           for (let i = 0; i < values.length; i++) {
             if (i > 0) {
-              output += ' '
+              result += ' '
             }
-            output += values[i].toString()
+            result += values[i].toString()
           }
-          output += '\n'
+          result += '\n'
         }
         vm.runInThisContext(content)
         console.log = log
@@ -36,20 +36,18 @@ module.exports = async (file, challenge) => {
   }
   console.log(logSymbols.info, 'Finished running your code.')
   console.log(logSymbols.info, 'Starting tests.')
-  let solution
+  let solution = {}
   try {
-    solution = challenge.verify()
-    if (solution.success) {
-      console.log(logSymbols.info, 'All tests have passed.')
-    } else {
-      console.log(logSymbols.warning, 'Some tests have failed.')
-    }
+    challenge.verify(result)
+    solution.success = true
+    console.log(logSymbols.info, 'All tests have passed.')
     if (typeof challenge.stop !== 'undefined') {
       challenge.stop()
     }
   } catch (error) {
-    console.log(logSymbols.error, 'Your code has produced an error: ')
-    console.log(logSymbols.error, error)
+    solution.success = false
+    console.log(logSymbols.warning, 'Some tests have failed.')
+    console.log(logSymbols.warning, error)
   }
   return solution
 }

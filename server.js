@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static('dist'))
 
-app.post('/test', (req, res, next) => {
+app.post('/test', async (req, res, next) => {
   const challenge = challenges[req.body.suite][req.body.challenge]
   const result = await tester(path.join(__dirname, 'files', req.body.filename), challenge)
   res.status(200).send(result)
@@ -30,11 +30,6 @@ app.post('/files/save', async (req, res, next) => {
 
 app.post('/files/load', async (req, res, next) => {
   res.status(200).send(await io.load(req.body.filename))
-})
-
-app.post('/progress/update', async (req, res, next) => {
-  await
-  res.sendStatus(200)
 })
 
 app.post('/progress', async (req, res, next) => {

@@ -1,9 +1,8 @@
 const fs = require('fs').promises
 const path = require('path')
 const JsonDB = require('node-json-db')
-const DBconfig = require('node-json-db/lib/JsonDBConfig')
 
-const db = new JsonDB("progress/progress.json")
+const db = new JsonDB.JsonDB("progress/progress.json")
 
 module.exports = {
   list: async () => {
