@@ -1,5 +1,9 @@
 const should = require('should')
 
+function nf(i) {
+  return "" + i < 10 ? "0" + i : i
+}
+
 module.exports = {
   beginner: {
     helloworld: {
@@ -278,6 +282,36 @@ module.exports = {
         should(clean('<button>Click me</button>')).be.exactly("buttonClick me/button")
       },
       mode: 'vm'
+    },
+    calculator: {
+      title: 'Simple calculator',
+      description: 'Add, subtract, multiply and divide',
+      task: 'Create a function called "calculate" which takes three arguments: an operand, an operator and an operand - all as strings. Return the result as a number',
+      verify: output => {
+        should(calculate('5', '+', '6')).be.exactly(11)
+        should(calculate('17', '-', '11')).be.exactly(6)
+        should(calculate('13', '*', '14')).be.exactly(182)
+        should(calculate('35', '/', '5')).be.exactly(7)
+      }
+    },
+    longestmessage: {
+      title: 'The longest message',
+      description: 'Find the longest message in an array of strings',
+      task: 'Create a function "longest" which takes an array of strings as a parameter, and returns the longest one (or any of them if there are multiple of the same length)',
+      verify: output => {
+        should(longest(['hello', 'world', 'how', 'are', 'you', 'doing', 'today'])).be.equalOneOf('hello', 'world', 'doing', 'today')
+        should(longest(['test', 'strings'])).be.exactly('strings')
+        should(longest(['tea', 'coffee', 'milk'])).be.exactly('coffee')
+        should(longest(['I', 'like', 'trains'])).be.exactly('trains')
+      }
+    },
+    alphabet: {
+      title: 'The alphabet',
+      description: 'A, b, c, d, e, f, g...',
+      task: 'Create a function "alphabet" that returns the alphabet as an array of lowercase strings',
+      verify: output => {
+        should(alphabet()).be.exactly(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
+      }
     }
   },
   date: {
@@ -287,7 +321,7 @@ module.exports = {
       task: 'Log the current time in HH:MM:SS format',
       verify: output => {
         const date = new Date()
-        should(output).be.exactly(date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds())
+        should(output).be.exactly(nf(date.getHours()) + ':' + nf(date.getMinutes()) + ':' + nf(date.getSeconds()))
       },
       mode: 'vm'
     },
@@ -297,7 +331,7 @@ module.exports = {
       task: 'Log the current date in YYYY:MM:DD format',
       verify: output => {
         const date = new Date()
-        should(output).be.exactly(date.getYear() + ':' + date.getMonth() + ':' + date.getDate())
+        should(output).be.exactly(date.getYear() + ':' + nf(date.getMonth()) + ':' + nf(date.getDate()))
       },
       mode: 'vm'
     },
