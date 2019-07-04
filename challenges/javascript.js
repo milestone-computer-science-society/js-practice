@@ -11,7 +11,7 @@ module.exports = {
       description: 'The first challenge',
       task: 'Log "Hello, World!" into the console',
       verify: output => {
-        should(output).be.exactly('Hello, World!')
+        should(output).be.exactly('Hello, World!\n')
       },
       mode: 'vm'
     },
@@ -292,7 +292,8 @@ module.exports = {
         should(calculate('17', '-', '11')).be.exactly(6)
         should(calculate('13', '*', '14')).be.exactly(182)
         should(calculate('35', '/', '5')).be.exactly(7)
-      }
+      },
+      mode: "vm"
     },
     longestmessage: {
       title: 'The longest message',
@@ -303,7 +304,8 @@ module.exports = {
         should(longest(['test', 'strings'])).be.exactly('strings')
         should(longest(['tea', 'coffee', 'milk'])).be.exactly('coffee')
         should(longest(['I', 'like', 'trains'])).be.exactly('trains')
-      }
+      },
+      mode: "vm"
     },
     alphabet: {
       title: 'The alphabet',
@@ -311,7 +313,8 @@ module.exports = {
       task: 'Create a function "alphabet" that returns the alphabet as an array of lowercase strings',
       verify: output => {
         should(alphabet()).be.exactly(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
-      }
+      },
+      mode: "vm"
     }
   },
   date: {
@@ -321,7 +324,7 @@ module.exports = {
       task: 'Log the current time in HH:MM:SS format',
       verify: output => {
         const date = new Date()
-        should(output).be.exactly(nf(date.getHours()) + ':' + nf(date.getMinutes()) + ':' + nf(date.getSeconds()))
+        should(output).be.exactly(nf(date.getHours()) + ':' + nf(date.getMinutes()) + ':' + nf(date.getSeconds()) + '\n')
       },
       mode: 'vm'
     },
@@ -364,7 +367,7 @@ module.exports = {
             day = 'Saturday'
             break
         }
-        should(output).be.exactly(day)
+        should(output).be.exactly(day + '\n')
       },
       mode: 'vm'
     }
