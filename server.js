@@ -37,4 +37,19 @@ app.post('/progress', async (req, res, next) => {
   res.status(200).send(await io.getprogress())
 })
 
+app.post('/challenges', async (req, res, next) => {
+  let c = {}
+  for (let suite in challenges) {
+    c[suite] = {}
+    for (let challenge in challenges[suite]) {
+      let original = challenges[suite][challenge]
+      let details = c[suite][challenge] = {}
+      details.title = original.title
+      details.description = original.description
+      details.task = original.task
+    }
+  }
+  res.status(200).send(c)
+})
+
 module.exports = app
