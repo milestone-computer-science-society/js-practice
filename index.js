@@ -6,5 +6,7 @@ const open = require('open')
   const server = require('./server.js')
   const port = process.env.PORT || default_port
   server.listen(port, () => console.log('Server is running.'))
-  open(`http://localhost:${port}`)
+  if (process.argv.indexOf("--nobrowser") === -1) {
+    open(`http://localhost:${port}`)
+  }
 })()
