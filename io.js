@@ -5,9 +5,13 @@ const JsonDB = require('node-json-db')
 const db = new JsonDB.JsonDB("progress/progress.json")
 
 module.exports = {
-  list: async () => {
+  list: async (suite, challenge) => {
     let files = await fs.readdir(path.join(__dirname, 'files'))
-    return files
+    if (typeof suite === 'undefined' || typeof challenge === 'undefined') {
+      return files
+    } else {
+      return files.filter(file => file.split('.')[0] === suite && file.split('.')[1] === challenge)
+    }
   },
   save: async (suite, challenge, data) => {
     suite = suite.replace(/[.\/]/g, '')
@@ -16,7 +20,9 @@ module.exports = {
     function nf(val) {
       return val < 10 ? '0' + val : val
     }
-    await fs.writeFile(path.join(__dirname, 'files', `${suite}.${challenge}.${date.getFullYear()}-${nf(date.getMonth())}-${nf(date.getDate())} ${nf(date.getHours())}:${nf(date.getMonth())}:${nf(date.getSeconds())}.js`), data)
+    const filename = `${suite}.${challenge}.${date.getFullYear()}-${nf(date.getMonth())}-${nf(date.getDate())} ${nf(date.getHours())}:${nf(date.getMonth())}:${nf(date.getSeconds())}.js`
+    await fs.writeFile(path.join(__dirname, 'files', filename), data)
+    return {filename}
   },
   load: async (filename) => {
     filename = filename.replace(/\//g, '').replace(/\.\./g, '')
@@ -25,6 +31,9 @@ module.exports = {
   },
   getprogress: async () => {
     return db.getData('/data')
+  },
+  getdone: async () => {
+    return [...new Set(db.getData('./data').filter(test => test.success).map(test => {return {suite: test.filename.split('.')[0], challenge: test.filename.split('.')[1]}}))]
   },
   updateprogress: async (filename, success) => {
     db.push('/data[]', {filename, success})

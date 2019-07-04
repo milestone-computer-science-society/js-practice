@@ -15,26 +15,29 @@ app.use(express.static('dist'))
 
 app.post('/test', async (req, res, next) => {
   const challenge = challenges[req.body.suite][req.body.challenge]
-  const result = await tester(path.join(__dirname, 'files', req.body.filename), challenge)
+  const result = await tester(path.join(__dirname, 'files', req.body.filename), challenge, `${req.body.suite}.${req.body.challenge}`)
   res.status(200).send(result)
   io.updateprogress(req.body.filename, result.success)
 })
 
-app.post('/files/list', async (req, res, next) => {
-  res.status(200).send(await io.list())
+app.post('/files/list/:suite/:challenge', async (req, res, next) => {
+  res.status(200).send(await io.list(req.param.suite, req.param.challenge))
 })
 
 app.post('/files/save', async (req, res, next) => {
-  await io.save(req.body.suite, req.body.challenge, req.body.data)
-  res.sendStatus(200)
+  res.status(200).send(await io.save(req.body.suite, req.body.challenge, req.body.data))
 })
 
 app.post('/files/load', async (req, res, next) => {
   res.status(200).send(await io.load(req.body.filename))
 })
 
-app.post('/progress', async (req, res, next) => {
+app.post('/tests', async (req, res, next) => {
   res.status(200).send(await io.getprogress())
+})
+
+app.post('/progress', async (req, res, next) => {
+  res.status(200).send(await io.getdone())
 })
 
 app.post('/challenges', async (req, res, next) => {
