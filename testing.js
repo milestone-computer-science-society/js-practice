@@ -3,11 +3,11 @@ const vm = require('vm')
 const logSymbols = require('log-symbols')
 
 module.exports = async (file, challenge) => {
-  const content = await fs.readFileSync(file)
+  const content = await fs.readFile(file)
   console.log(logSymbols.info, `Starting evaluation of ${file} for challenge ${challenge.title} in mode ${challenge.mode}.`)
   let result
   try {
-    switch (mode) {
+    switch (challenge.mode) {
       case 'eval':
         eval(content + '')
         break
