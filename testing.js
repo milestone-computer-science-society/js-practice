@@ -2,9 +2,9 @@ const fs = require('fs').promises
 const vm = require('vm')
 const logSymbols = require('log-symbols')
 
-module.exports = async (file, challenge) => {
+module.exports = async (file, challenge, id) => {
   const content = await fs.readFile(file)
-  console.log(logSymbols.info, `Starting evaluation of ${file} for challenge ${challenge.title} in mode ${challenge.mode}.`)
+  console.log(logSymbols.info, `Starting evaluation of ${file} for challenge ${challenge.title} (${id}) in mode ${challenge.mode}.`)
   let result
   try {
     switch (challenge.mode) {
