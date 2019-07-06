@@ -29,17 +29,6 @@ module.exports = {
       },
       mode: 'vm'
     },
-    sum: {
-      title: 'Create a function',
-      description: 'A simple sum function',
-      task: 'Create the funcion "sum" that returns the sum of the 3 parameters it receives',
-      verify: output => {
-        should(sum(5, 6, -8)).be.exactly(3)
-        should(sum(-7, 452, 19.7)).be.exactly(464.7)
-        should(sum(3, 436, 300)).be.exactly(739)
-      },
-      mode: 'eval'
-    },
     highestIndex: {
       title: 'Largest element',
       description: 'The largest element in an array',
@@ -48,17 +37,6 @@ module.exports = {
         should(max([5, -6, 4.3, 19, 85, 10])).be.exactly(4)
         should(max([7, 4, 0, 4])).be.exactly(0)
         should(max([2, 4, 18, -3])).be.exactly(2)
-      },
-      mode: 'eval'
-    },
-    multiply: {
-      title: 'Multiplication',
-      description: 'Multiplying numbers',
-      task: 'Create the function "times" which returns the two numbers it received multiplied together',
-      verify: output => {
-        should(times(7, 8)).be.exactly(56)
-        should(times(0, 2)).be.exactly(0)
-        should(times(23, 74)).be.exactly(1702)
       },
       mode: 'eval'
     },
@@ -81,26 +59,6 @@ module.exports = {
         should(a).deepEqual(b)
         let c = swap([5, 8, 6, 7], 2, 3)
         should(b).deepEqual(c)
-      },
-      mode: 'vm'
-    },
-    triangle: {
-      title: 'Triangle properties',
-      description: 'Calculate perimeter and area of triangle',
-      task: 'Create a function called "triangle" that receives the 3 lengths of the sides of a triangle, and returns an object, with two properties, the area and perimetre of the triangle',
-      verify: output => {
-        should(triangle(5, 6, 7)).deepEqual({area: Math.sqrt(9*4*3*2), perimeter: 18})
-        should(triangle(6, 8, 10)).deepEqual({area: Math.sqrt(12*6*4*2), perimeter: 24})
-      },
-      mode: 'vm'
-    },
-    circle: {
-      title: 'Circle properties',
-      description: 'Calculate area and circumference of circle',
-      task: 'Create a function called "circle" that receives the radius of a circle as a parameter, and returns an object with the area and circumference as properties',
-      verify: output => {
-        should(circle(8)).deepEqual({area: Math.PI * 8 * 8, circumference: 2 * 8 * Math.PI})
-        should(circle(40)).deepEqual({area: Math.PI * 40 * 40, circumference: 2 * 40 * Math.PI})
       },
       mode: 'vm'
     },
@@ -130,77 +88,6 @@ module.exports = {
         should(vowel("b")).be.false()
         should(vowel("m")).be.false()
         should(vowel("x")).be.false()
-      },
-      mode: 'vm'
-    },
-    happynumber: {
-      title: 'Happy number',
-      description: 'Find whether a number is happy or not',
-      task: 'Create a function called "happynumber" that returns a boolean indicating whether the number received as a parameter is happy or not',
-      verify: output => {
-        should(happy(1)).be.true()
-        should(happy(19)).be.true()
-        should(happy(44)).be.true()
-        should(happy(5)).be.false()
-        should(happy(12)).be.false()
-        should(happy(255)).be.false()
-      },
-      mode: 'vm'
-    },
-    prime: {
-      title: 'Prime',
-      description: 'Find whether a number is prime or not',
-      task: 'Create a function called "prime" that returns a boolean indicating whether the number received as a parameter is prime or not',
-      verify: output => {
-        should(prime(2)).be.true()
-        should(prime(7)).be.true()
-        should(prime(11)).be.true()
-        should(prime(5119)).be.true()
-        should(prime(1)).be.false()
-        should(prime(12)).be.false()
-        should(prime(81)).be.false()
-        should(prime(5463)).be.false()
-      },
-      mode: 'vm'
-    },
-    perfectnumber: {
-      title: 'Perfect number',
-      description: 'Find whether a number is perfect or not',
-      task: 'Create a function called "perfectnumber" that returns a boolean indicating whether the number received as a parameter is a perfect number or not',
-      verify: output => {
-        should(perfectnumber(6)).be.true()
-        should(perfectnumber(28)).be.true()
-        should(perfectnumber(496)).be.true()
-        should(perfectnumber(8128)).be.true()
-        should(perfectnumber(20)).be.false()
-        should(perfectnumber(46)).be.false()
-        should(perfectnumber(220)).be.false()
-        should(perfectnumber(721)).be.false()
-      },
-      mode: 'vm'
-    },
-    polygonangle: {
-      title: 'Angle of regular polygon',
-      description: 'Interior angle of a regular polygon',
-      task: 'Create a function called "angle" that returns the value of one angle of a regular polygon with the side count given as a parameter',
-      verify: output => {
-        should(angle(3)).be.exactly(60)
-        should(angle(4)).be.exactly(90)
-        should(angle(5)).be.exactly(108)
-        should(angle(8)).be.exaclty(135)
-        should(angle(18)).be.exactly(160)
-      },
-      mode: 'vm'
-    },
-    papersize: {
-      title: 'Size of folded paper',
-      description: 'Calculate size of paper folded in half multiple times',
-      task: 'Create a function called "papersize" that receives the fold count as a parameter and returns the size of a unit paper folded in half that many times',
-      verify: output => {
-        should(papersize(0)).be.exactly(1)
-        should(papersize(2)).be.exactly(0.25)
-        should(papersize(4)).be.exactly(0.0625)
-        should(papersize(6)).be.exactly(0.015625)
       },
       mode: 'vm'
     },
@@ -278,18 +165,6 @@ module.exports = {
         should(clean('<button>Click me</button>')).be.exactly("buttonClick me/button")
       },
       mode: 'vm'
-    },
-    calculator: {
-      title: 'Simple calculator',
-      description: 'Add, subtract, multiply and divide',
-      task: 'Create a function called "calculate" which takes three arguments: an operand, an operator and an operand - all as strings. Return the result as a number',
-      verify: output => {
-        should(calculate('5', '+', '6')).be.exactly(11)
-        should(calculate('17', '-', '11')).be.exactly(6)
-        should(calculate('13', '*', '14')).be.exactly(182)
-        should(calculate('35', '/', '5')).be.exactly(7)
-      },
-      mode: "vm"
     },
     longestmessage: {
       title: 'The longest message',
@@ -457,5 +332,134 @@ module.exports = {
       },
       mode: 'module'
     },
+  },
+  geometry: {
+    triangle: {
+      title: 'Triangle properties',
+      description: 'Calculate perimeter and area of triangle',
+      task: 'Create a function called "triangle" that receives the 3 lengths of the sides of a triangle, and returns an object, with two properties, the area and perimetre of the triangle',
+      verify: output => {
+        should(triangle(5, 6, 7)).deepEqual({area: Math.sqrt(9*4*3*2), perimeter: 18})
+        should(triangle(6, 8, 10)).deepEqual({area: Math.sqrt(12*6*4*2), perimeter: 24})
+      },
+      mode: 'vm'
+    },
+    circle: {
+      title: 'Circle properties',
+      description: 'Calculate area and circumference of circle',
+      task: 'Create a function called "circle" that receives the radius of a circle as a parameter, and returns an object with the area and circumference as properties',
+      verify: output => {
+        should(circle(8)).deepEqual({area: Math.PI * 8 * 8, circumference: 2 * 8 * Math.PI})
+        should(circle(40)).deepEqual({area: Math.PI * 40 * 40, circumference: 2 * 40 * Math.PI})
+      },
+      mode: 'vm'
+    },
+    polygonangle: {
+      title: 'Angle of regular polygon',
+      description: 'Interior angle of a regular polygon',
+      task: 'Create a function called "angle" that returns the value of one angle of a regular polygon with the side count given as a parameter',
+      verify: output => {
+        should(angle(3)).be.exactly(60)
+        should(angle(4)).be.exactly(90)
+        should(angle(5)).be.exactly(108)
+        should(angle(8)).be.exaclty(135)
+        should(angle(18)).be.exactly(160)
+      },
+      mode: 'vm'
+    },
+    papersize: {
+      title: 'Size of folded paper',
+      description: 'Calculate size of paper folded in half multiple times',
+      task: 'Create a function called "papersize" that receives the fold count as a parameter and returns the size of a unit paper folded in half that many times',
+      verify: output => {
+        should(papersize(0)).be.exactly(1)
+        should(papersize(2)).be.exactly(0.25)
+        should(papersize(4)).be.exactly(0.0625)
+        should(papersize(6)).be.exactly(0.015625)
+      },
+      mode: 'vm'
+    }
+  },
+  math: {
+    sum: {
+      title: 'Create a function',
+      description: 'A simple sum function',
+      task: 'Create the funcion "sum" that returns the sum of the 3 parameters it receives',
+      verify: output => {
+        should(sum(5, 6, -8)).be.exactly(3)
+        should(sum(-7, 452, 19.7)).be.exactly(464.7)
+        should(sum(3, 436, 300)).be.exactly(739)
+      },
+      mode: 'eval'
+    },
+    multiply: {
+      title: 'Multiplication',
+      description: 'Multiplying numbers',
+      task: 'Create the function "times" which returns the two numbers it received multiplied together',
+      verify: output => {
+        should(times(7, 8)).be.exactly(56)
+        should(times(0, 2)).be.exactly(0)
+        should(times(23, 74)).be.exactly(1702)
+      },
+      mode: 'eval'
+    },
+    happynumber: {
+      title: 'Happy number',
+      description: 'Find whether a number is happy or not',
+      task: 'Create a function called "happynumber" that returns a boolean indicating whether the number received as a parameter is happy or not',
+      verify: output => {
+        should(happy(1)).be.true()
+        should(happy(19)).be.true()
+        should(happy(44)).be.true()
+        should(happy(5)).be.false()
+        should(happy(12)).be.false()
+        should(happy(255)).be.false()
+      },
+      mode: 'vm'
+    },
+    prime: {
+      title: 'Prime',
+      description: 'Find whether a number is prime or not',
+      task: 'Create a function called "prime" that returns a boolean indicating whether the number received as a parameter is prime or not',
+      verify: output => {
+        should(prime(2)).be.true()
+        should(prime(7)).be.true()
+        should(prime(11)).be.true()
+        should(prime(5119)).be.true()
+        should(prime(1)).be.false()
+        should(prime(12)).be.false()
+        should(prime(81)).be.false()
+        should(prime(5463)).be.false()
+      },
+      mode: 'vm'
+    },
+    perfectnumber: {
+      title: 'Perfect number',
+      description: 'Find whether a number is perfect or not',
+      task: 'Create a function called "perfectnumber" that returns a boolean indicating whether the number received as a parameter is a perfect number or not',
+      verify: output => {
+        should(perfectnumber(6)).be.true()
+        should(perfectnumber(28)).be.true()
+        should(perfectnumber(496)).be.true()
+        should(perfectnumber(8128)).be.true()
+        should(perfectnumber(20)).be.false()
+        should(perfectnumber(46)).be.false()
+        should(perfectnumber(220)).be.false()
+        should(perfectnumber(721)).be.false()
+      },
+      mode: 'vm'
+    },
+    calculator: {
+      title: 'Simple calculator',
+      description: 'Add, subtract, multiply and divide',
+      task: 'Create a function called "calculate" which takes three arguments: an operand, an operator and an operand - all as strings. Return the result as a number',
+      verify: output => {
+        should(calculate('5', '+', '6')).be.exactly(11)
+        should(calculate('17', '-', '11')).be.exactly(6)
+        should(calculate('13', '*', '14')).be.exactly(182)
+        should(calculate('35', '/', '5')).be.exactly(7)
+      },
+      mode: "vm"
+    }
   }
 }
