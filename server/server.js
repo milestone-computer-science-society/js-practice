@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 
 const tester = require('./testing.js')
-const challenges = require('./challenges/javascript.js')
+const challenges = require('../challenges/javascript.js')
 const io = require('./io.js')
 
 const app = express()
