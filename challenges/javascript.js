@@ -1,9 +1,5 @@
 const should = require('should')
 
-function nf(i) {
-  return "" + i < 10 ? "0" + i : i
-}
-
 module.exports = {
   beginner: {
     helloworld: {
@@ -323,6 +319,9 @@ module.exports = {
       description: 'Display the current time',
       task: 'Log the current time in HH:MM:SS format',
       verify: output => {
+        function nf(i) {
+          return "" + i < 10 ? "0" + i : i
+        }
         const date = new Date()
         should(output).be.exactly(nf(date.getHours()) + ':' + nf(date.getMinutes()) + ':' + nf(date.getSeconds()) + '\n')
       },
@@ -333,6 +332,9 @@ module.exports = {
       description: 'Display the current date',
       task: 'Log the current date in YYYY:MM:DD format',
       verify: output => {
+        function nf(i) {
+          return "" + i < 10 ? "0" + i : i
+        }
         const date = new Date()
         should(output).be.exactly(date.getYear() + ':' + nf(date.getMonth()) + ':' + nf(date.getDate()))
       },
