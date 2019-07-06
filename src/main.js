@@ -4,6 +4,7 @@ import React from "react";
 import { render } from "react-dom";
 import codemirror from 'codemirror';
 require('codemirror/mode/javascript/javascript');
+import './api.js';
 import {UnControlled as CodeMirror} from 'react-codemirror2';
 import {
   Content,
