@@ -424,5 +424,36 @@ module.exports = {
       },
       mode: 'vm'
     }
+  },
+  node: {
+    module: {
+      title: 'First module',
+      description: 'Create a node module',
+      task: 'Create a module that exports an object with at least 5 properties',
+      verify: output => {
+        should(Object.keys(output).length).be.aboveOrEqual(5)
+      },
+      mode: 'module'
+    },
+    function: {
+      title: 'Export a function',
+      description: 'Make it available to other files',
+      task: 'Create a module that exports a function, which returns true',
+      verify: output => {
+        should(output()).be.true()
+      },
+      mode: 'module'
+    },
+    numbers: {
+      title: 'Convert string to integer',
+      description: 'Extract all digits from the string',
+      task: 'Create a module that exports a function which returns a number extracted from the string',
+      verify: output => {
+        should(output('12')).be.exactly(12)
+        should(output('20abc')).be.exactly(20)
+        should(output('5a6b7')).be.exactly(567)
+      },
+      mode: 'module'
+    },
   }
 }
