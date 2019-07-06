@@ -370,6 +370,59 @@ module.exports = {
         should(output).be.exactly(day + '\n')
       },
       mode: 'vm'
+    },
+    year2038: {
+      title: 'Year 2038 problem',
+      description: 'The last 32-bit date',
+      task: 'Create a Date object called "lastSecond" and set it to the last second which is set to the last representable second in 32 bits (signed)',
+      verify: output => {
+        should(lastSecond).eql(new Date(2147483647000))
+      },
+      mode: 'vm'
+    },
+    daysInMonth: {
+      title: 'Days in month',
+      description: 'Count the days in a month',
+      task: 'Create a function called "numDays" which receives a month and a year as an input, and returns the number of days in it',
+      verify: output => {
+        should(numDays(1, 2020)).be.exactly(31)
+        should(numDays(2, 2020)).be.exactly(29)
+        should(numDays(3, 2020)).be.exactly(31)
+        should(numDays(4, 2020)).be.exaclty(30)
+        should(numDays(5, 2020)).be.exactly(31)
+        should(numDays(6, 2020)).be.exactly(30)
+        should(numDays(7, 2020)).be.exactly(31)
+        should(numDays(8, 2020)).be.exaclty(31)
+        should(numDays(9, 2020)).be.exactly(30)
+        should(numDays(10, 2020)).be.exactly(31)
+        should(numDays(11, 2020)).be.exaclty(30)
+        should(numDays(12, 2020)).be.exactly(31)
+        should(numDays(2, 2019)).be.exactly(28)
+      },
+      mode: 'vm'
+    },
+    difference: {
+      title: 'Difference between dates',
+      description: 'Count the number of days between two dates',
+      task: 'Create a function called "dateDifference" which takes two Date objects as inputs, and returns the difference between them in days (rounded)',
+      verify: output => {
+        should(dateDifference(Date.UTC(2020, 1, 1), Date.UTC(2020, 1, 2))).be.exactly(1)
+        should(dateDifference(Date.UTC(2020, 1, 4), Date.UTC(2020, 5, 18))).be.exactly(135)
+        should(dateDifference(Date.UTC(2020, 10, 2), Date.UTC(2019, 5, 7))).be.exactly(-514)
+      }
+    },
+    milliseconds: {
+      title: 'Convert to milliseconds',
+      description: 'How many milliseconds in a day, hour, minute',
+      task: 'Create a function called "milliseconds" which takes four inputs: days, hours, minutes, seconds and returns the same amount in milliseconds',
+      verify: output => {
+        should(milliseconds(1, 0, 0, 0)).be.exactly(86400000)
+        should(milliseconds(0, 1, 0, 0)).be.exactly(3600000)
+        should(milliseconds(0, 0, 1, 0)).be.exactly(60000)
+        should(milliseconds(0, 0, 0, 1)).be.exactly(1000)
+        should(milliseconds(4, 9, 38, 25)).be.exactly(380305000)
+      },
+      mode: 'vm'
     }
   }
 }
