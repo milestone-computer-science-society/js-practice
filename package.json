@@ -22,7 +22,9 @@
     "nodejs"
   ],
   "author": "DaniFoldi",
-  "contributors": ["NeoAren"],
+  "contributors": [
+    "NeoAren"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/milestone-computer-science-society/js-practice/issues"
@@ -39,6 +41,7 @@
     "node-json-db": "^1.0.0",
     "node-sass": "^4.12.0",
     "open": "^6.4.0",
+    "prompt": "^1.0.0",
     "react": "^16.8.6",
     "react-codemirror2": "^6.0.0",
     "react-dom": "^16.8.6",
