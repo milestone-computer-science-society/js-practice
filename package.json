@@ -22,6 +22,7 @@
     "nodejs"
   ],
   "author": "DaniFoldi",
+  "contributors": ["NeoAren"],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/milestone-computer-science-society/js-practice/issues"
@@ -49,8 +50,8 @@
     "update": "^0.7.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",

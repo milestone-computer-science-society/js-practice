@@ -6,8 +6,9 @@ This repository contains tasks which help you improve your coding skills.
 
 **How to use this package**
 --
-Install it using `npm i js-practice` and then start it with `npm start`. Then, your default browser should automatically open, but if not, visit http://localhost:3000.
+Install and launch it using `npx js-practice`. You can change the server port by changing the `PORT` environment variable. Additionally, appending `-- --nobrowser` will stop the script from opening the interface in your default browser. You can then visit http://localhost:3000.
 
 All scripts are saved in your `files` folder. The file name structure is as follows: `<challenge-id>.<timestamp>.js`.
+Your test data is saved in the `progess/progress.json` file. Save this as well if you are backing up your data.
 
 **Have fun solving the challenges!**
