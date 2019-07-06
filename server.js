@@ -20,6 +20,14 @@ app.post('/test', async (req, res, next) => {
   io.updateprogress(req.body.filename, result.success)
 })
 
+app.post('/files/list', async (req, res, next) => {
+  res.status(200).send(await io.list())
+})
+
+app.post('/files/list/:suite', async (req, res, next) => {
+  res.status(200).send(await io.list(req.param.suite))
+})
+
 app.post('/files/list/:suite/:challenge', async (req, res, next) => {
   res.status(200).send(await io.list(req.param.suite, req.param.challenge))
 })
