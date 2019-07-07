@@ -39,7 +39,7 @@ prompt.get(challenge_schema, (err, result) => {
       description: '${result.description}',
       task: '${result.task}',
       verify: output => {
-
+        
       },
       mode: '${result.mode}'
     },`)
