@@ -456,6 +456,40 @@ module.exports = {
       },
       mode: 'vm'
     },
+    union: {
+      title: 'Union of arrays',
+      description: 'Elements in either array',
+      task: 'Create a function called "union" which given two arrays returns the union of them as a new array',
+      verify: output => {
+        should(union([1, 2, 3, 4], [5, 6, 7, 8])).sort((a, b) => a - b).eql([1, 2, 3, 4, 5, 6, 7, 8])
+        should(union([1, 10, 4, 6], [5, 6, 7, 8])).sort((a, b) => a - b).eql([1, 4, 5, 6, 7, 8, 10])
+        should(union([6, 10, 2, 9], [6, 10, 2, 9])).sort((a, b) => a - b).eql([2, 6, 9, 10])
+      },
+      mode: 'vm'
+    },
+    fill: {
+      title: 'Prefilled array',
+      description: 'An array of given length',
+      task: 'Create a function "prefill" which receives an element and a number as parameters, and returns an array of the given length, where each element is the one received',
+      verify: output => {
+        should(prefill("ice cream", 4)).eql(["ice cream", "ice cream", "ice cream", "ice cream"])
+        should(prefill(0, 10)).eql([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        should(prefill(11, 4)).eql([11, 11, 11, 11])
+      },
+      mode: 'vm'
+    },
+    range: {
+      title: 'Range of integers',
+      description: 'An array with sequential elements',
+      task: 'Create a function "range" which receives a starting element (inclusive) and an end element (non-inclusive) and returns an array with all numbers in order',
+      verify: output => {
+        should(range(0, 10)).eql([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+        should(range(0, 1)).eql([0])
+        should(range(5, 8)).eql([5, 6, 7])
+        should(range(-4, 5)).eql([-4, -3, -2, -1, 0, 1, 2, 3, 4])
+      },
+      mode: 'vm'
+    }
   },
   node: {
     module: {
