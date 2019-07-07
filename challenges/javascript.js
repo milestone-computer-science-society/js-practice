@@ -222,7 +222,7 @@ module.exports = {
         should(times(23, 74)).be.exactly(1702)
       },
       mode: 'eval'
-    },,
+    },
     temperature: {
       title: 'Temperature conversion',
       description: 'Convert between Farenheit and Celsius',
