@@ -6,7 +6,7 @@ const db = new JsonDB.JsonDB("progress/progress.json")
 
 module.exports = {
   list: async (suite, challenge) => {
-    let files = await fs.readdir(path.join(__dirname, 'files'))
+    let files = await fs.readdir(path.join(__dirname, '..', 'files'))
     if (typeof suite === 'undefined' || typeof challenge === 'undefined') {
       return files
     } else {
@@ -20,13 +20,13 @@ module.exports = {
     function nf(val) {
       return val < 10 ? '0' + val : val
     }
-    const filename = `${suite}.${challenge}.${date.getFullYear()}-${nf(date.getMonth())}-${nf(date.getDate())} ${nf(date.getHours())}:${nf(date.getMonth())}:${nf(date.getSeconds())}.js`
-    await fs.writeFile(path.join(__dirname, 'files', filename), data)
+    const filename = `${suite}.${challenge}.${date.getFullYear()}-${nf(date.getMonth() + 1)}-${nf(date.getDate())} ${nf(date.getHours())}:${nf(date.getMinutes())}:${nf(date.getSeconds())}.js`
+    await fs.writeFile(path.join(__dirname, '..', 'files', filename), data)
     return {filename}
   },
   load: async (filename) => {
     filename = filename.replace(/\//g, '').replace(/\.\./g, '')
-    let contents = await fs.readFile(path.join(__dirname, 'files', filename))
+    let contents = await fs.readFile(path.join(__dirname, '..', 'files', filename))
     return contents
   },
   getprogress: async () => {

@@ -62,7 +62,7 @@ module.exports = {
           return "" + i < 10 ? "0" + i : i
         }
         const date = new Date()
-        should(output).be.exactly(date.getYear() + ':' + nf(date.getMonth()) + ':' + nf(date.getDate()))
+        should(output).be.exactly(date.getYear() + ':' + nf(date.getMonth() + 1) + ':' + nf(date.getDate()))
       },
       mode: 'vm'
     },
@@ -210,7 +210,7 @@ module.exports = {
         should(sum(-7, 452, 19.7)).be.exactly(464.7)
         should(sum(3, 436, 300)).be.exactly(739)
       },
-      mode: 'eval'
+      mode: 'vm'
     },
     multiply: {
       title: 'Multiplication',
@@ -221,7 +221,7 @@ module.exports = {
         should(times(0, 2)).be.exactly(0)
         should(times(23, 74)).be.exactly(1702)
       },
-      mode: 'eval'
+      mode: 'vm'
     },
     temperature: {
       title: 'Temperature conversion',
@@ -302,7 +302,7 @@ module.exports = {
       task: 'Create a function called "vowel" that returns a boolean indicating whether a lowercase letter is a vowel or not',
       verify: output => {
         should(vowel("a")).be.true()
-        should(wovel("e")).be.true()
+        should(vowel("e")).be.true()
         should(vowel("u")).be.true()
         should(vowel("o")).be.true()
         should(vowel("i")).be.true()
@@ -422,8 +422,8 @@ module.exports = {
       mode: 'vm'
     },
     highestIndex: {
-      title: 'Largest element',
-      description: 'The largest element in an array',
+      title: 'Largest element index',
+      description: 'The largest element\'s index in an array',
       task: 'Create a function called "max" which given an array as a parameter, returns the highest element\'s index',
       verify: output => {
         should(max([5, -6, 4.3, 19, 85, 10])).be.exactly(4)
@@ -437,10 +437,12 @@ module.exports = {
       description: 'Swap two elements of an array',
       task: 'Create a function called "swap" that receives 3 parameters: an array, and two indices, which represent the elements that should be swapped',
       verify: output => {
-        let a = swap([5, 6, 7, 8], 1, 3)
+        let a = [5, 6, 7, 8]
+        swap(a, 1, 3)
         let b = [5, 8, 7, 6]
         should(a).deepEqual(b)
-        let c = swap([5, 8, 6, 7], 2, 3)
+        let c = [5, 8, 6, 7]
+        swap(c, 2, 3)
         should(b).deepEqual(c)
       },
       mode: 'vm'
