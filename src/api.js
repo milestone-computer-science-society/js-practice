@@ -1,6 +1,6 @@
 export default class PracticeAPI {
   static async test(suite, challenge, filename) {
-    let result = await fetch('/test', {method: 'post', body: {suite, challenge, filename}})
+    let result = await fetch('/test', {method: 'post', headers:{'Content-Type': 'application/json'}, body: JSON.stringify({suite, challenge, filename})})
     let json = await result.json()
     return json
   }
@@ -12,13 +12,13 @@ export default class PracticeAPI {
   }
 
   static async saveFile(suite, challenge, data) {
-    let result = await fetch('/files/save', {method: 'post', body: {suite, challenge, data}})
+    let result = await fetch('/files/save', {method: 'post', headers:{'Content-Type': 'application/json'}, body: JSON.stringify({suite, challenge, data})})
     let json = await result.json()
     return json
   }
 
   static async loadFile(filename) {
-    let result = await fetch('/files/load', {method: 'post', body: {filename}})
+    let result = await fetch('/files/load', {method: 'post', headers:{'Content-Type': 'application/json'}, body: JSON.stringify({filename})})
     let text = await result.text()
     return text
   }
