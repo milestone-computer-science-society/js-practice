@@ -15,7 +15,7 @@ app.use(express.static('dist'))
 
 app.post('/test', async (req, res, next) => {
   const challenge = challenges[req.body.suite][req.body.challenge]
-  const result = await tester(path.join(__dirname, 'files', req.body.filename), challenge, `${req.body.suite}.${req.body.challenge}`)
+  const result = await tester(path.join(__dirname, '..', 'files', req.body.filename), challenge, `${req.body.suite}.${req.body.challenge}`)
   res.status(200).send(result)
   io.updateprogress(req.body.filename, result.success)
 })
@@ -25,11 +25,11 @@ app.post('/files/list', async (req, res, next) => {
 })
 
 app.post('/files/list/:suite', async (req, res, next) => {
-  res.status(200).send(await io.list(req.param.suite))
+  res.status(200).send(await io.list(req.params.suite))
 })
 
 app.post('/files/list/:suite/:challenge', async (req, res, next) => {
-  res.status(200).send(await io.list(req.param.suite, req.param.challenge))
+  res.status(200).send(await io.list(req.params.suite, req.params.challenge))
 })
 
 app.post('/files/save', async (req, res, next) => {

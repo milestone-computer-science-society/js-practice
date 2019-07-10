@@ -46,6 +46,7 @@ module.exports = async (file, challenge, id) => {
     }
   } catch (error) {
     solution.success = false
+    solution.error = error.toString()
     console.log(logSymbols.warning, 'Some tests have failed.')
     console.log(logSymbols.warning, error)
   }
