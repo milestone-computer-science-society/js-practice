@@ -32,6 +32,8 @@ let methods = {
   },
   doneChallenges: async () => {
     const progress = await PracticeAPI.getProgress()
+    const tests = await PracticeAPI.getTests()
+    const failedTests = [...new Set(tests.filter(el => !el.success).map(el => {return {suite: el.filename.split('.')[0], challenge: el.filename.split('.')[1]}}))]
     for (let span of document.querySelectorAll("span")) {
       span.parentNode.removeChild(span)
     }
@@ -41,6 +43,10 @@ let methods = {
       if (progress.filter(el => el.suite === suite && el.challenge === challenge).length > 0) {
         const span = document.createElement("span")
         span.innerText = "✅"
+        element.appendChild(span)
+      } else if (failedTests.filter(el => el.suite === suite && el.challenge === challenge).length > 0) {
+        const span = document.createElement("span")
+        span.innerText = "❌"
         element.appendChild(span)
       }
     }
@@ -93,9 +99,8 @@ let methods = {
     let message = `<br>Test ${result.success ? 'passed ✅' : 'failed ❌'}<br>`
     if (!result.success) {
       message += result.error
-    } else {
-      await methods.doneChallenges()
     }
+    await methods.doneChallenges()
     document.querySelector("#results").innerHTML = message
   }
 }
