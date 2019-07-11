@@ -1,6 +1,6 @@
 {
   "name": "@comsci/js-practice",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This package contains tasks which help you improve your coding skills.",
   "main": "index.js",
   "scripts": {
