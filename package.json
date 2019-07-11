@@ -13,6 +13,9 @@
     "type": "git",
     "url": "git+https://github.com/milestone-computer-science-society/js-practice.git"
   },
+  "bin": {
+    "happy-birthday": "./happy-birthday.js"
+  },
   "keywords": [
     "javascript",
     "practice",

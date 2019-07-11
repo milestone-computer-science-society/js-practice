@@ -2,7 +2,7 @@
 This repository contains challenges which help you improve your coding skills.
 --
 
-## Work in progress
+### Work in progress
 
 **How to use this package**
 --
