@@ -2,8 +2,13 @@ const default_port = 3000
 
 const open = require('open')
 const readline = require('readline')
+const fs = require('fs').promises
+const path = require('path')
 
 ;(async () => {
+  try {
+    await fs.mkdir(path.join(__dirname, 'files'))
+  } catch {}
   const server = require('./server/server.js')
   const port = process.env.PORT || default_port
   server.listen(port, () => console.log('Server is running.'))

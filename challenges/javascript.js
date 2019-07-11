@@ -137,7 +137,8 @@ module.exports = {
         should(dateDifference(Date.UTC(2020, 1, 1), Date.UTC(2020, 1, 2))).be.exactly(1)
         should(dateDifference(Date.UTC(2020, 1, 4), Date.UTC(2020, 5, 18))).be.exactly(135)
         should(dateDifference(Date.UTC(2020, 10, 2), Date.UTC(2019, 5, 7))).be.exactly(-514)
-      }
+      },
+      mode: 'vm'
     },
     milliseconds: {
       title: 'Convert to milliseconds',
@@ -450,7 +451,7 @@ module.exports = {
     joinElements: {
       title: 'Join elements of an array',
       description: 'Create a string from an array',
-      task: 'Create a function called "join" which receives an array and a separator as parameeters, and returns a string where between all elements the separator is inserted',
+      task: 'Create a function called "join" which receives an array and a separator as parameters, and returns a string where between all elements the separator is inserted',
       verify: output => {
         should(['test', 'string'], '').be.exactly('teststring')
         should(['test long', 'string'], ' ').be.exactly('test long string')

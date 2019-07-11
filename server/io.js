@@ -4,6 +4,13 @@ const JsonDB = require('node-json-db')
 
 const db = new JsonDB.JsonDB('progress/progress.json')
 
+try {
+  db.getData('/data')
+} catch (error) {
+  console.log('Creating database')
+  db.push('/data', [])
+}
+
 module.exports = {
   list: async (suite, challenge) => {
     const files = await fs.readdir(path.join(__dirname, '..', 'files'))
@@ -33,7 +40,7 @@ module.exports = {
     return db.getData('/data')
   },
   getdone: async () => {
-    return [...new Set(db.getData('./data').filter(test => test.success).map(test => {return {suite: test.filename.split('.')[0], challenge: test.filename.split('.')[1]}}))]
+    return [...new Set(db.getData('/data').filter(test => test.success).map(test => {return {suite: test.filename.split('.')[0], challenge: test.filename.split('.')[1]}}))]
   },
   updateprogress: async (filename, success) => {
     db.push('/data[]', {filename, success})
