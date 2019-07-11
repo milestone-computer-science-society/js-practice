@@ -36,7 +36,7 @@ module.exports = async (file, challenge, id) => {
   }
   console.log(logSymbols.info, 'Finished running your code.')
   console.log(logSymbols.info, 'Starting tests.')
-  let solution = {}
+  const solution = {}
   try {
     challenge.verify(result)
     solution.success = true

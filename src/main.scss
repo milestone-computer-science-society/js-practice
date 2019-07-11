@@ -12,9 +12,9 @@ body {
   height: 100vh;
   margin: 0;
   background: lighten($color1, 5%);
-  grid-template: "challenges settings settings" auto
-                 "challenges editor editor" 1fr
-                 "challenges files results" 20% / 280px auto 1fr;
+  grid-template: 'challenges settings settings' auto
+                 'challenges editor editor' 1fr
+                 'challenges files results' 20% / 280px auto 1fr;
   font-size: 14px;
   font-family: Helvetica, Arial;
   font-weight: lighter;
@@ -92,8 +92,8 @@ body {
 
   .challenge {
     display: grid;
-    grid-template: "title image" auto
-                  "description image" auto / 1fr auto;
+    grid-template: 'title image' auto
+                  'description image' auto / 1fr auto;
 
 
     h4 {

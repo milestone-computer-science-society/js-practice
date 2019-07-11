@@ -49,12 +49,12 @@ app.post('/progress', async (req, res, next) => {
 })
 
 app.post('/challenges', async (req, res, next) => {
-  let c = {}
+  const c = {}
   for (let suite in challenges) {
     c[suite] = {}
-    for (let challenge in challenges[suite]) {
-      let original = challenges[suite][challenge]
-      let details = c[suite][challenge] = {}
+    for (const challenge in challenges[suite]) {
+      const original = challenges[suite][challenge]
+      const details = c[suite][challenge] = {}
       details.title = original.title
       details.description = original.description
       details.task = original.task

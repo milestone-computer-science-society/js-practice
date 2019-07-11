@@ -46,7 +46,7 @@ module.exports = {
       task: 'Log the current time in HH:MM:SS format',
       verify: output => {
         function nf(i) {
-          return "" + i < 10 ? "0" + i : i
+          return '' + i < 10 ? '0' + i : i
         }
         const date = new Date()
         should(output).be.exactly(nf(date.getHours()) + ':' + nf(date.getMinutes()) + ':' + nf(date.getSeconds()) + '\n')
@@ -59,7 +59,7 @@ module.exports = {
       task: 'Log the current date in YYYY:MM:DD format',
       verify: output => {
         function nf(i) {
-          return "" + i < 10 ? "0" + i : i
+          return '' + i < 10 ? '0' + i : i
         }
         const date = new Date()
         should(output).be.exactly(date.getYear() + ':' + nf(date.getMonth() + 1) + ':' + nf(date.getDate()))
@@ -228,11 +228,11 @@ module.exports = {
       description: 'Convert between Farenheit and Celsius',
       task: 'Create a function called "convert" that receives a string as an input: all but the last character are part of a floating number and the last character specifies the scale. Return the temperature in the other scale using the same format',
       verify: output => {
-        should(convert("30.0C")).equal("86F")
-        should(convert("0C")).equal("32F")
-        should(convert("12.4C")).equal("54.32F")
-        should(convert("122F")).equal("50C")
-        should(convert("-31F")).equal("-35C")
+        should(convert('30.0C')).equal('86F')
+        should(convert('0C')).equal('32F')
+        should(convert('12.4C')).equal('54.32F')
+        should(convert('122F')).equal('50C')
+        should(convert('-31F')).equal('-35C')
       },
       mode: 'vm'
     },
@@ -292,7 +292,7 @@ module.exports = {
         should(calculate('13', '*', '14')).be.exactly(182)
         should(calculate('35', '/', '5')).be.exactly(7)
       },
-      mode: "vm"
+      mode: 'vm'
     }
   },
   string: {
@@ -301,14 +301,14 @@ module.exports = {
       description: 'Find whether a letter is a vowel',
       task: 'Create a function called "vowel" that returns a boolean indicating whether a lowercase letter is a vowel or not',
       verify: output => {
-        should(vowel("a")).be.true()
-        should(vowel("e")).be.true()
-        should(vowel("u")).be.true()
-        should(vowel("o")).be.true()
-        should(vowel("i")).be.true()
-        should(vowel("b")).be.false()
-        should(vowel("m")).be.false()
-        should(vowel("x")).be.false()
+        should(vowel('a')).be.true()
+        should(vowel('e')).be.true()
+        should(vowel('u')).be.true()
+        should(vowel('o')).be.true()
+        should(vowel('i')).be.true()
+        should(vowel('b')).be.false()
+        should(vowel('m')).be.false()
+        should(vowel('x')).be.false()
       },
       mode: 'vm'
     },
@@ -317,10 +317,10 @@ module.exports = {
       description: 'Get the extension of a file',
       task: 'Create a function called "extension" that receives a filename as a parameter and returns the extension of the file',
       verify: output => {
-        should(extension("image.jpeg")).be.exactly("jpeg")
-        should(extension("music.mp3")).be.exactly("mp3")
-        should(extension("web.html")).be.exactly("html")
-        should(extension("demo.pptx")).be.exactly("pptx")
+        should(extension('image.jpeg')).be.exactly('jpeg')
+        should(extension('music.mp3')).be.exactly('mp3')
+        should(extension('web.html')).be.exactly('html')
+        should(extension('demo.pptx')).be.exactly('pptx')
       },
       mode: 'vm'
     },
@@ -329,9 +329,9 @@ module.exports = {
       description: 'String multiple times',
       task: 'Create a function called "repeat" that receives a string and a repeat count as an input, and returns the string appended to itself as many times as needed',
       verify: output => {
-        should(repeat("a", 3)).be.exactly("aaa")
-        should(repeat("Abcd", 4)).be.exactly("AbcdAbcdAbcdAbcd")
-        should(repeat("x y ", 6)).be.exactly("x y x y x y x y x y x y ")
+        should(repeat('a', 3)).be.exactly('aaa')
+        should(repeat('Abcd', 4)).be.exactly('AbcdAbcdAbcdAbcd')
+        should(repeat('x y ', 6)).be.exactly('x y x y x y x y x y x y ')
       },
       mode: 'vm'
     },
@@ -340,9 +340,9 @@ module.exports = {
       description: 'Lowercase version of a string',
       task: 'Create a function called "lowercase" which returns the received input string converted into lowercase',
       verify: output => {
-        should(lowercase("HELLO")).be.exactly("hello")
-        should(lowercase("so what")).be.exactly("so what")
-        should(lowercase("Human")).be.exactly("human")
+        should(lowercase('HELLO')).be.exactly('hello')
+        should(lowercase('so what')).be.exactly('so what')
+        should(lowercase('Human')).be.exactly('human')
       },
       mode: 'vm'
     },
@@ -381,9 +381,9 @@ module.exports = {
       description: 'Remove XML/HTML tags from text',
       task: 'Create a function called "clean" that returns the cleaned version (<> removed) of the string received as a parameter',
       verify: output => {
-        should(clean('<html><head>')).be.exactly("htmlhead")
-        should(clean('Lorem ipsum')).be.exactly("Lorem ipsum")
-        should(clean('<button>Click me</button>')).be.exactly("buttonClick me/button")
+        should(clean('<html><head>')).be.exactly('htmlhead')
+        should(clean('Lorem ipsum')).be.exactly('Lorem ipsum')
+        should(clean('<button>Click me</button>')).be.exactly('buttonClick me/button')
       },
       mode: 'vm'
     },
@@ -397,7 +397,7 @@ module.exports = {
         should(longest(['tea', 'coffee', 'milk'])).be.exactly('coffee')
         should(longest(['I', 'like', 'trains'])).be.exactly('trains')
       },
-      mode: "vm"
+      mode: 'vm'
     },
     alphabet: {
       title: 'The alphabet',
@@ -406,7 +406,7 @@ module.exports = {
       verify: output => {
         should(alphabet()).be.exactly(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
       },
-      mode: "vm"
+      mode: 'vm'
     }
   },
   array: {
@@ -437,11 +437,11 @@ module.exports = {
       description: 'Swap two elements of an array',
       task: 'Create a function called "swap" that receives 3 parameters: an array, and two indices, which represent the elements that should be swapped',
       verify: output => {
-        let a = [5, 6, 7, 8]
+        const a = [5, 6, 7, 8]
         swap(a, 1, 3)
-        let b = [5, 8, 7, 6]
+        const b = [5, 8, 7, 6]
         should(a).deepEqual(b)
-        let c = [5, 8, 6, 7]
+        const c = [5, 8, 6, 7]
         swap(c, 2, 3)
         should(b).deepEqual(c)
       },
@@ -474,7 +474,7 @@ module.exports = {
       description: 'An array of given length',
       task: 'Create a function "prefill" which receives an element and a number as parameters, and returns an array of the given length, where each element is the one received',
       verify: output => {
-        should(prefill("ice cream", 4)).eql(["ice cream", "ice cream", "ice cream", "ice cream"])
+        should(prefill('ice cream', 4)).eql(['ice cream', 'ice cream', 'ice cream', 'ice cream'])
         should(prefill(0, 10)).eql([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
         should(prefill(11, 4)).eql([11, 11, 11, 11])
       },
