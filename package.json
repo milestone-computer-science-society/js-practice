@@ -1,6 +1,6 @@
 {
   "name": "@comsci/js-practice",
-  "version": "1.0.1",
+  "version": "1.0.6",
   "description": "This package contains tasks which help you improve your coding skills.",
   "main": "index.js",
   "scripts": {
@@ -12,9 +12,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/milestone-computer-science-society/js-practice.git"
-  },
-  "bin": {
-    "happy-birthday": "./happy-birthday.js"
   },
   "keywords": [
     "javascript",
