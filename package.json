@@ -32,9 +32,6 @@
   },
   "homepage": "https://github.com/milestone-computer-science-society/js-practice#readme",
   "dependencies": {
-    "@carbon/icons-react": "^10.3.0",
-    "carbon-components": "^10.3.2",
-    "carbon-components-react": "^7.3.2",
     "codemirror": "^5.48.0",
     "css-loader": "^3.0.0",
     "express": "^4.17.1",
@@ -43,23 +40,18 @@
     "node-sass": "^4.12.0",
     "open": "^6.4.0",
     "prompt": "^1.0.0",
-    "react": "^16.8.6",
-    "react-codemirror2": "^6.0.0",
-    "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.0.1",
     "sass-loader": "^7.1.0",
     "should": "^13.2.3",
     "style-loader": "^0.23.1",
     "update": "^0.7.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
-    "webpack": "^4.35.2",
+    "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5"
   }
 }
