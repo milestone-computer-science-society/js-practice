@@ -13,7 +13,7 @@ try {
 
 module.exports = {
   list: async (suite, challenge) => {
-    const files = await fs.readdir(path.join(__dirname, '..', 'files'))
+    const files = await fs.readdir(path.join(global.directory, 'files'))
     if (typeof suite === 'undefined' || typeof challenge === 'undefined') {
       return files
     } else {
@@ -28,12 +28,12 @@ module.exports = {
       return val < 10 ? '0' + val : val
     }
     const filename = `${suite}.${challenge}.${date.getFullYear()}-${nf(date.getMonth() + 1)}-${nf(date.getDate())} ${nf(date.getHours())}:${nf(date.getMinutes())}:${nf(date.getSeconds())}.js`
-    await fs.writeFile(path.join(__dirname, '..', 'files', filename), data)
+    await fs.writeFile(path.join(global.directory, 'files', filename), data)
     return {filename}
   },
   load: async (filename) => {
     filename = filename.replace(/\//g, '').replace(/\.\./g, '')
-    const contents = await fs.readFile(path.join(__dirname, '..', 'files', filename))
+    const contents = await fs.readFile(path.join(global.directory, 'files', filename))
     return contents
   },
   getprogress: async () => {

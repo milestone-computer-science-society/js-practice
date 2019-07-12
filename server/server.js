@@ -15,7 +15,7 @@ app.use(express.static('dist'))
 
 app.post('/test', async (req, res, next) => {
   const challenge = challenges[req.body.suite][req.body.challenge]
-  const result = await tester(path.join(__dirname, '..', 'files', req.body.filename), challenge, `${req.body.suite}.${req.body.challenge}`)
+  const result = await tester(path.join(global.directory, 'files', req.body.filename), challenge, `${req.body.suite}.${req.body.challenge}`)
   res.status(200).send(result)
   io.updateprogress(req.body.filename, result.success)
 })

@@ -6,8 +6,13 @@ const fs = require('fs').promises
 const path = require('path')
 
 ;(async () => {
+  if (require.main.filename.indexOf('node_modules') === -1) {
+    global.directory = require.main.filename
+  } else {
+    global.directory = /.*(?=node_modules)/.exec(require.main.filename)[0]
+  }
   try {
-    await fs.mkdir(path.join(__dirname, 'files'))
+    await fs.mkdir(path.join(global.directory, 'files'))
   } catch {}
   const server = require('./server/server.js')
   const port = process.env.PORT || default_port
