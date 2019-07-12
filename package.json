@@ -1,6 +1,6 @@
 {
   "name": "@comsci/js-practice",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "This package contains tasks which help you improve your coding skills.",
   "main": "index.js",
   "scripts": {
@@ -33,17 +33,12 @@
   "homepage": "https://github.com/milestone-computer-science-society/js-practice#readme",
   "dependencies": {
     "codemirror": "^5.48.0",
-    "css-loader": "^3.0.0",
     "express": "^4.17.1",
     "log-symbols": "^3.0.0",
     "node-json-db": "^1.0.0",
-    "node-sass": "^4.12.0",
     "open": "^6.4.0",
     "prompt": "^1.0.0",
-    "sass-loader": "^7.1.0",
-    "should": "^13.2.3",
-    "style-loader": "^0.23.1",
-    "update": "^0.7.4"
+    "should": "^13.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
@@ -51,6 +46,10 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
+    "css-loader": "^3.0.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5"
   }
