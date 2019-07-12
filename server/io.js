@@ -2,12 +2,11 @@ const fs = require('fs').promises
 const path = require('path')
 const JsonDB = require('node-json-db')
 
-const db = new JsonDB.JsonDB('progress/progress.json')
+const db = new JsonDB.JsonDB(path.join(global.directory, 'progress', 'progress.json'))
 
 try {
   db.getData('/data')
 } catch (error) {
-  console.log('Creating database')
   db.push('/data', [])
 }
 
