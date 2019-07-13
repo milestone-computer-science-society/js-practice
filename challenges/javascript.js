@@ -37,6 +37,15 @@ module.exports = {
         should(Object.keys(details).length).be.aboveOrEqual(5)
       },
       mode: 'vm'
+    },
+    array: {
+      title: 'Create an array',
+      description: 'An array with some data',
+      task: 'Create an array called "temperature" and initalise it with at least 10 temperature values',
+      verify: output => {
+        should(temperature.length).be.aboveOrEqual(10)
+      },
+      mode: 'vm'
     }
   },
   date: {

@@ -16,6 +16,11 @@ const methods = {
       element.addEventListener('click', async () => {
         const suite = element.getAttribute('data-suite')
         const challenge = element.getAttribute('data-challenge')
+        if (element !== document.querySelector('.active')) {
+          editor.setValue('')
+          document.querySelector('#results').innerHTML = ''
+          editor.focus()
+        }
         if (document.querySelector('.active') !== null)
           document.querySelector('.active').classList.remove('active')
           document.querySelector('h2').innerText = challenges[suite][challenge].task
@@ -87,7 +92,7 @@ const methods = {
     files[files.length - 1].click()
     files[files.length - 1].scrollIntoView()
   },
-  test: async () => {
+  test: async (editor) => {
     if (document.querySelector('.current') === null) {
       document.querySelector('#results').innerHTML = 'Save and select file before testing'
       return
@@ -101,7 +106,9 @@ const methods = {
       message += result.error
       message += '<br>Check the server console for more information'
     }
+    let data = editor.getValue()
     await methods.doneChallenges()
+    editor.setValue(data)
     document.querySelector('#results').innerHTML = message
   }
 }
