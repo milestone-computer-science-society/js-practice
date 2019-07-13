@@ -87,7 +87,7 @@ const methods = {
     files[files.length - 1].click()
     files[files.length - 1].scrollIntoView()
   },
-  test: async (editor) => {
+  test: async () => {
     if (document.querySelector('.current') === null) {
       document.querySelector('#results').innerHTML = 'Save and select file before testing'
       return
@@ -101,7 +101,6 @@ const methods = {
       message += result.error
       message += '<br>Check the server console for more information'
     }
-    editor.setValue(editor.getValue())
     await methods.doneChallenges()
     document.querySelector('#results').innerHTML = message
   }

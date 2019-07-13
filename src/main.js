@@ -22,7 +22,7 @@ window.addEventListener('load', async () => {
     await Show.save(editor)
   })
   document.querySelector('#test').addEventListener('click', async () => {
-    await Show.test(editor)
+    await Show.test()
   })
 
   await Show.listChallenges(editor)

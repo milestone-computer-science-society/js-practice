@@ -14,18 +14,18 @@ module.exports = {
     variable: {
       title: 'Create a variable',
       description: 'Declaring using keywords',
-      task: 'Declare a variable named "name" and initialize it with any non-empty value',
+      task: 'Declare a variable named "name" and initialize it the value "Jack"',
       verify: output => {
-        should(name).be.instanceOf(String).and.not.empty()
+        should(name).be.exactly('Jack')
       },
       mode: 'vm'
     },
     number: {
       title: 'Create a numerical variable',
       description: 'Declaring using keywords',
-      task: 'Declare a variable named "cost" and initialize it with a numerical value',
+      task: 'Declare a variable named "cost" and initialize it the value of 10.5',
       verify: output => {
-        should(cost).be.instanceOf(Number)
+        should(cost).be.exactly(10.5)
       },
       mode: 'vm'
     },
@@ -62,7 +62,7 @@ module.exports = {
           return '' + i < 10 ? '0' + i : i
         }
         const date = new Date()
-        should(output).be.exactly(date.getYear() + ':' + nf(date.getMonth() + 1) + ':' + nf(date.getDate()))
+        should(output).be.exactly(date.getFullYear() + ':' + nf(date.getMonth() + 1) + ':' + nf(date.getDate()) + '\n')
       },
       mode: 'vm'
     },
@@ -72,9 +72,10 @@ module.exports = {
       task: 'Log the current day of week to the console',
       verify: output => {
         const date = new Date()
+        let day
         switch (date.getDay()) {
           case 0:
-            let day = 'Sunday'
+            day = 'Sunday'
             break
           case 1:
             day = 'Monday'
@@ -134,9 +135,9 @@ module.exports = {
       description: 'Count the number of days between two dates',
       task: 'Create a function called "dateDifference" which takes two Date objects as inputs, and returns the difference between them in days (rounded)',
       verify: output => {
-        should(dateDifference(Date.UTC(2020, 1, 1), Date.UTC(2020, 1, 2))).be.exactly(1)
-        should(dateDifference(Date.UTC(2020, 1, 4), Date.UTC(2020, 5, 18))).be.exactly(135)
-        should(dateDifference(Date.UTC(2020, 10, 2), Date.UTC(2019, 5, 7))).be.exactly(-514)
+        should(dateDifference(new Date(2020, 1, 1), new Date(2020, 1, 2))).be.exactly(1)
+        should(dateDifference(new Date(2020, 1, 4), new Date(2020, 5, 18))).be.exactly(135)
+        should(dateDifference(new Date(2020, 10, 2), new Date(2019, 5, 7))).be.exactly(-514)
       },
       mode: 'vm'
     },
@@ -158,7 +159,7 @@ module.exports = {
     triangle: {
       title: 'Triangle properties',
       description: 'Calculate perimeter and area of triangle',
-      task: 'Create a function called "triangle" that receives the 3 lengths of the sides of a triangle, and returns an object, with two properties, the area and perimetre of the triangle',
+      task: 'Create a function called "triangle" that receives the 3 lengths of the sides of a triangle, and returns an object, with two properties, the area and perimeter of the triangle',
       verify: output => {
         should(triangle(5, 6, 7)).deepEqual({area: Math.sqrt(9*4*3*2), perimeter: 18})
         should(triangle(6, 8, 10)).deepEqual({area: Math.sqrt(12*6*4*2), perimeter: 24})
@@ -242,12 +243,12 @@ module.exports = {
       description: 'Find whether a number is happy or not',
       task: 'Create a function called "happynumber" that returns a boolean indicating whether the number received as a parameter is happy or not',
       verify: output => {
-        should(happy(1)).be.true()
-        should(happy(19)).be.true()
-        should(happy(44)).be.true()
-        should(happy(5)).be.false()
-        should(happy(12)).be.false()
-        should(happy(255)).be.false()
+        should(happynumber(1)).be.true()
+        should(happynumber(19)).be.true()
+        should(happynumber(44)).be.true()
+        should(happynumber(5)).be.false()
+        should(happynumber(12)).be.false()
+        should(happynumber(255)).be.false()
       },
       mode: 'vm'
     },
@@ -405,7 +406,7 @@ module.exports = {
       description: 'A, b, c, d, e, f, g...',
       task: 'Create a function "alphabet" that returns the alphabet as an array of lowercase strings',
       verify: output => {
-        should(alphabet()).be.exactly(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
+        should(alphabet()).be.eql(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
       },
       mode: 'vm'
     }
@@ -416,9 +417,9 @@ module.exports = {
       description: 'Find the lowest value element in an array',
       task: 'Create a function called "smallest" which given an array of numbers returns the smallest value found',
       verify: output => {
-        should([5, 6, 7, 8]).be.exactly(5)
-        should([2, 5, 2, 17]).be.exactly(2)
-        should([5, 8, 10, 93, 8, 3, -8]).be.exactly(-8)
+        should(smallest([5, 6, 7, 8])).be.exactly(5)
+        should(smallest([2, 5, 2, 17])).be.exactly(2)
+        should(smallest([5, 8, 10, 93, 8, 3, -8])).be.exactly(-8)
       },
       mode: 'vm'
     },
@@ -453,9 +454,9 @@ module.exports = {
       description: 'Create a string from an array',
       task: 'Create a function called "join" which receives an array and a separator as parameters, and returns a string where between all elements the separator is inserted',
       verify: output => {
-        should(['test', 'string'], '').be.exactly('teststring')
-        should(['test long', 'string'], ' ').be.exactly('test long string')
-        should(['unsure about this'], 'separator').be.exactly('unsure about this')
+        should(join(['test', 'string'], '')).be.exactly('teststring')
+        should(join(['test long', 'string'], ' ')).be.exactly('test long string')
+        should(join(['unsure about this'], 'separator')).be.exactly('unsure about this')
       },
       mode: 'vm'
     },
@@ -464,9 +465,9 @@ module.exports = {
       description: 'Elements in either array',
       task: 'Create a function called "union" which given two arrays returns the union of them as a new array',
       verify: output => {
-        should(union([1, 2, 3, 4], [5, 6, 7, 8])).sort((a, b) => a - b).eql([1, 2, 3, 4, 5, 6, 7, 8])
-        should(union([1, 10, 4, 6], [5, 6, 7, 8])).sort((a, b) => a - b).eql([1, 4, 5, 6, 7, 8, 10])
-        should(union([6, 10, 2, 9], [6, 10, 2, 9])).sort((a, b) => a - b).eql([2, 6, 9, 10])
+        should(union([1, 2, 3, 4], [5, 6, 7, 8]).sort((a, b) => a - b)).eql([1, 2, 3, 4, 5, 6, 7, 8])
+        should(union([1, 10, 4, 6], [5, 6, 7, 8]).sort((a, b) => a - b)).eql([1, 4, 5, 6, 7, 8, 10])
+        should(union([6, 10, 2, 9], [6, 10, 2, 9]).sort((a, b) => a - b)).eql([2, 6, 9, 10])
       },
       mode: 'vm'
     },
