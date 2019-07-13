@@ -26,7 +26,7 @@ module.exports = {
     function nf(val) {
       return val < 10 ? '0' + val : val
     }
-    const filename = `${suite}.${challenge}.${date.getFullYear()}-${nf(date.getMonth() + 1)}-${nf(date.getDate())} ${nf(date.getHours())}:${nf(date.getMinutes())}:${nf(date.getSeconds())}.js`
+    const filename = `${suite}.${challenge}.${date.getFullYear()}-${nf(date.getMonth() + 1)}-${nf(date.getDate())} ${nf(date.getHours())}-${nf(date.getMinutes())}-${nf(date.getSeconds())}.js`
     await fs.writeFile(path.join(global.directory, 'files', filename), data)
     return {filename}
   },

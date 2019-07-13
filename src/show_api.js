@@ -58,7 +58,7 @@ const methods = {
     element.classList.add('active')
     let filemenu = '<ul>'
     for (let file of files) {
-      const date = /\d+-\d+-\d+ \d+:\d+:\d+/.exec(file)
+      const date = /\d+-\d+-\d+ \d+-\d+-\d+/.exec(file)
       filemenu += `<li data-date='${date}'>${date}</li>`
     }
     filemenu += '</ul>'
