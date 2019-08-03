@@ -534,5 +534,14 @@ module.exports = {
       },
       mode: 'module'
     },
+    os: {
+      title: 'The os module',
+      description: 'Basic information about your computer',
+      task: 'Create a module that exports a function which upon execution logs the hostname and the architecture of your computer to the console',
+      verify: output => {
+
+      },
+      mode: 'module'
+    }
   },
 }

@@ -2,13 +2,19 @@ const default_port = 3000
 
 const fs = require('fs').promises
 const path = require('path')
+const updateNotifier = require('update-notifier-plus')
 
-;(async () => {
-  if (require.main.filename.indexOf('node_modules') === -1) {
+;
+(async () => {
+  if (require.main.filename.indexOf('node_modules') === -1) {
     global.directory = path.dirname(require.main.filename)
   } else {
     global.directory = /.*(?=node_modules)/.exec(require.main.filename)[0]
   }
+  const packageJson = require(path.join(global.directory, './package.json'))
+  updateNotifier({
+    pkg: packageJson
+  }).notify()
   try {
     await fs.mkdir(path.join(global.directory, 'files'))
   } catch {}

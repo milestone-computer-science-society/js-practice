@@ -16,6 +16,11 @@ const methods = {
       element.addEventListener('click', async () => {
         const suite = element.getAttribute('data-suite')
         const challenge = element.getAttribute('data-challenge')
+        if (typeof localStorage !== 'undefined' && document.querySelector('.active') !== null) {
+          const suite = document.querySelector('.active').getAttribute('data-suite')
+          const challenge = document.querySelector('.active').getAttribute('data-challenge')
+          localStorage.setItem(`${suite}.${challenge}`, editor.getValue())
+        }
         if (element !== document.querySelector('.active')) {
           editor.setValue('')
           document.querySelector('#results').innerHTML = ''
@@ -23,13 +28,18 @@ const methods = {
         }
         if (document.querySelector('.active') !== null)
           document.querySelector('.active').classList.remove('active')
-          document.querySelector('h2').innerText = challenges[suite][challenge].task
+        document.querySelector('h2').innerText = challenges[suite][challenge].task
         element.classList.add('active')
         await methods.listFiles(editor, element)
         const files = document.querySelectorAll('#files li')
         if (files.length !== 0) {
           files[files.length - 1].click()
           files[files.length - 1].scrollIntoView()
+        }
+        if (typeof localStorage !== 'undefined') {
+          if (localStorage.getItem(`${suite}.${challenge}`) !== null) {
+            editor.setValue(localStorage.getItem(`${suite}.${challenge}`))
+          }
         }
       })
     }
@@ -38,7 +48,12 @@ const methods = {
   doneChallenges: async () => {
     const progress = await PracticeAPI.getProgress()
     const tests = await PracticeAPI.getTests()
-    const failedTests = [...new Set(tests.filter(el => !el.success).map(el => {return {suite: el.filename.split('.')[0], challenge: el.filename.split('.')[1]}}))]
+    const failedTests = [...new Set(tests.filter(el => !el.success).map(el => {
+      return {
+        suite: el.filename.split('.')[0],
+        challenge: el.filename.split('.')[1]
+      }
+    }))]
     for (let span of document.querySelectorAll('span')) {
       span.parentNode.removeChild(span)
     }
@@ -82,6 +97,11 @@ const methods = {
     if (document.querySelector('.active') === null) {
       document.querySelector('#results').innerHTML = 'Select a challenge first'
       return
+    }
+    if (typeof localStorage !== 'undefined') {
+      const suite = document.querySelector('.active').getAttribute('data-suite')
+      const challenge = document.querySelector('.active').getAttribute('data-challenge')
+      localStorage.removeItem(`${suite}.${challenge}`)
     }
     const code = editor.getValue()
     const suite = document.querySelector('.active').getAttribute('data-suite')

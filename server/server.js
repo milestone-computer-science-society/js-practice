@@ -9,7 +9,9 @@ const io = require('./io.js')
 const app = express()
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
 app.use(express.static('dist'))
 

@@ -14,7 +14,7 @@ body {
   background: lighten($color1, 5%);
   grid-template: 'challenges settings settings' auto
                  'challenges editor editor' 1fr
-                 'challenges files results' 20% / 280px auto 1fr;
+                 'challenges files results' 20% / minmax(18vw, 280px) auto 1fr;
   font-size: 14px;
   font-family: Helvetica, Arial;
   font-weight: lighter;

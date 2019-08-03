@@ -22,7 +22,7 @@ const challenge_schema = {
     mode: {
       type: 'string',
       required: true,
-      default: 'vm'
+      default: 'module'
     }
   }
 }
