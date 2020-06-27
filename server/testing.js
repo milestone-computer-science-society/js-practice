@@ -1,9 +1,10 @@
-const fs = require('fs').promises
+const debug = require('debug')('js-practice')
+const fse = require('fs-extra')
 const vm = require('vm')
 const logSymbols = require('log-symbols')
 
 module.exports = async (file, challenge, id) => {
-      const content = await fs.readFile(file)
+      const content = await fse.readFile(file)
       console.log(logSymbols.info, `Starting evaluation of ${file} for challenge ${challenge.title} (${id}) in ${challenge.mode} mode.`)
       let context = {}
       let result = ''
@@ -13,13 +14,12 @@ module.exports = async (file, challenge, id) => {
           case 'vm':
             const script = new vm.Script(content)
 
-            function log(...args) {
-              result += args.join(' ') + '\n'
-            }
             context = vm.createContext({
               require,
               console: {
-                log
+                log: (...args) => {
+                  result += args.join(' ') + '\n'
+                }
               }
             }, {
               name: 'Test context'
@@ -59,7 +59,8 @@ module.exports = async (file, challenge, id) => {
   } catch (error) {
     solution.success = false
     solution.error = error.toString()
-    console.log(logSymbols.warning, error)
+    console.log(logSymbols.warning, solution.error)
+    debug(error)
     console.log(logSymbols.warning, 'Some tests have failed.')
   }
   return solution

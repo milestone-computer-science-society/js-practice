@@ -1,4 +1,4 @@
-import './main.scss'
+import './main.sass'
 
 import CodeMirror from 'codemirror'
 require('codemirror/mode/javascript/javascript')
@@ -42,4 +42,20 @@ addEventListener('load', async () => {
 
   await Show.listChallenges(editor)
   await Show.doneChallenges()
+
+  document.querySelectorAll('.collapse-suite').forEach(el => el.addEventListener('click', async () => {
+    if (el.classList.contains('expand-suite')) {
+      el.classList.remove('expand-suite')
+      el.classList.add('collapse-suite')
+      el.parentNode.classList.add('expanded-suite')
+      el.parentNode.classList.remove('collapsed-suite')
+      el.textContent = '-'
+    } else {
+      el.classList.add('expand-suite')
+      el.classList.remove('collapse-suite')
+      el.parentNode.classList.remove('expanded-suite')
+      el.parentNode.classList.add('collapsed-suite')
+      el.textContent = '+'
+    }
+  }))
 })

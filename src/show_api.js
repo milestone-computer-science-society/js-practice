@@ -5,7 +5,7 @@ const methods = {
     const challenges = await PracticeAPI.getChallenges()
     let menu = '<ul>'
     for (let suite in challenges) {
-      menu += `<li><ul><h3>${suite.toUpperCase()}</h3>`
+      menu += `<li><ul><div class='expanded-suite'><p>${suite.toUpperCase()}</p><button class='collapse-suite'>-</button></div>`
       for (let challenge in challenges[suite])
         menu += `<li class='challenge' data-suite='${suite}' data-challenge='${challenge}'><h4>${challenges[suite][challenge].title}</h4><summary>${challenges[suite][challenge].description}</summary></li>`
       menu += '</ul></li>'
