@@ -1,0 +1,174 @@
+@import '../node_modules/codemirror/lib/codemirror.css'
+@import '../node_modules/codemirror/theme/xq-dark.css'
+@import '../node_modules/codemirror/addon/hint/show-hint.css'
+$color1: #08011d
+$color2: #e1e1e1
+
+body
+  background: lighten($color1, 5%)
+  color: $color2
+  display: grid
+  font-family: Helvetica, Arial
+  font-size: 14px
+  font-weight: lighter
+  grid-template: 'challenges settings settings' auto 'challenges editor editor' 1fr 'challenges files results' 20% / minmax(18vw, 280px) auto 1fr
+  height: 100vh
+  margin: 0
+  width: 100vw
+
+  nav
+    background: lighten($color1, 10%)
+    grid-area: challenges
+    overflow-y: scroll
+
+  header
+    grid-area: settings
+
+  #editor
+    grid-area: editor
+
+  #files
+    grid-area: files
+    overflow: auto
+
+    ul > li
+      border-left-color: rgba(0, 0, 0, 0)
+      border-left-style: solid
+      border-left-width: 8px
+      cursor: pointer
+      font-size: 14px
+
+      &:hover
+        border-left-color: lighten($color1, 50%)
+
+      margin-right: 4px
+      padding: 4px
+
+
+    .current
+      border-left-color: lighten($color1, 30%)
+
+
+  button
+    background: lighten($color1, 25%)
+    border: 0
+    color: darken($color2, 20%)
+    cursor: pointer
+    font-size: 20px
+    margin: 4px
+    padding: 6px 10px
+    transition-duration: .35s
+    width: 65px
+
+    &:hover
+      background: lighten($color1, 30%)
+      color: darken($color2, 5%)
+
+
+    &:active
+      background: lighten($color1, 35%)
+      transition-duration: 0.15s
+
+  main
+    grid-area: results
+    padding: 16px
+
+
+  li
+    list-style-type: none
+    transition-duration: .35s
+
+  ul > div
+    background: lighten($color1, 10%)
+    display: grid
+    grid-column-gap: 12px
+    grid-template: "title button" 100% / 1fr 20px
+    margin-top: 16px
+    padding-left: 12px
+    place-items: center stretch
+    position: sticky
+    top: 0
+
+    & > p
+      grid-area: title
+      letter-spacing: 1.5px
+
+    & > button
+      color: $color2
+      grid-area: button
+      height: 20px
+      line-height: 20px
+      margin: 0
+      padding: 0
+      text-align: center
+      width: 20px
+
+    &.collapsed-suite ~ li
+      display: none
+
+  .challenge
+    display: grid
+    grid-template: 'title image' auto 'description image' auto / 1fr auto
+
+    h4
+      grid-area: title
+      margin: 0
+      margin-bottom: 2px
+      padding-top: 6px
+
+    summary
+      grid-area: description
+      padding-bottom: 6px
+
+
+    span
+      grid-area: image
+      padding: 8px
+
+
+
+  h1
+    font-size: 40px
+    margin: 12px
+
+
+  h2
+    color: lighten($color1, 70%)
+    font-size: 18px
+    margin: 3px 0
+    padding: 5px
+
+
+  .active
+    background: lighten($color1, 15%)
+    border-left-color: lighten($color1, 30%)
+
+
+  ul
+    padding-left: 0
+
+    li
+      ul
+        li
+          border-left-color: rgba(0, 0, 0, 0)
+          border-left-style: solid
+          border-left-width: 8px
+          cursor: pointer
+          padding-left: 4px
+
+          &:hover
+            background: lighten($color1, 20%)
+            border-left-color: lighten($color1, 50%)
+
+::-webkit-scrollbar
+  width: 20px
+
+::-webkit-scrollbar-track
+  background: lighten($color1, 10%)
+
+::-webkit-scrollbar-thumb
+  background-color: lighten($color1, 25%)
+  border-left: lighten($color1, 10%) solid 8px
+
+  &:hover
+    background-color: lighten($color1, 30%)

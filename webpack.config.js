@@ -1,6 +1,6 @@
 // Webpack Configuration
 
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   mode: 'development',
@@ -14,17 +14,22 @@ module.exports = {
   },
 
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
       },
       {
-        test: /\.(css|scss)$/,
-        use: [ { loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' } ]
+        test: /\.(css|scss|sass)$/,
+        use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader'
+        }, {
+          loader: 'sass-loader'
+        }]
       }
     ]
   }
 
-};
+}
