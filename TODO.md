@@ -1,0 +1,4 @@
+- challenges:
+  - conversion
+  - fetch
+  - json
