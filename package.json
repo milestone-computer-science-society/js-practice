@@ -23,6 +23,9 @@
     "nodejs"
   ],
   "author": "DaniFoldi",
+  "bin": {
+    "practice": "./index.js"
+  },
   "contributors": [
     "NeoAren"
   ],

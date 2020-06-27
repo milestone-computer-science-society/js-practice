@@ -1,8 +1,10 @@
+#!/usr/bin/env/node
+
 const default_port = 3000
 
-const fs = require('fs').promises
+const fse = require('fs-extra')
 const path = require('path')
-const updateNotifier = require('update-notifier-plus')
+const updateNotifier = require('update-notifier')
 
 ;
 (async () => {
@@ -16,7 +18,7 @@ const updateNotifier = require('update-notifier-plus')
     pkg: packageJson
   }).notify()
   try {
-    await fs.mkdir(path.join(global.directory, 'files'))
+    await fse.mkdirs(path.join(global.directory, 'files'))
   } catch {}
   const server = require('./server/server.js')
   const port = process.env.PORT || default_port
