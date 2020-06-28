@@ -2,3 +2,22 @@
   - conversion
   - fetch
   - json
+  - classes
+
+- factorial
+- leap year
+- binary search
+- palindrome
+- rotate array
+- calculator
+- frame printing
+- pig latin translation
+- morse
+- matrix multiplication
+- 3d objects
+- i-keyboard
+- binary shifting
+- binary compression
+- lerp
+- map
+- distance

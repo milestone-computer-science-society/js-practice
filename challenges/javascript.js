@@ -170,8 +170,14 @@ module.exports = {
       description: 'Calculate perimeter and area of triangle',
       task: 'Create a function called "triangle" that receives the 3 lengths of the sides of a triangle, and returns an object, with two properties, the area and perimeter of the triangle',
       verify: output => {
-        should(triangle(5, 6, 7)).deepEqual({area: Math.sqrt(9*4*3*2), perimeter: 18})
-        should(triangle(6, 8, 10)).deepEqual({area: Math.sqrt(12*6*4*2), perimeter: 24})
+        should(triangle(5, 6, 7)).deepEqual({
+          area: Math.sqrt(9 * 4 * 3 * 2),
+          perimeter: 18
+        })
+        should(triangle(6, 8, 10)).deepEqual({
+          area: Math.sqrt(12 * 6 * 4 * 2),
+          perimeter: 24
+        })
       },
       mode: 'vm'
     },
@@ -180,8 +186,14 @@ module.exports = {
       description: 'Calculate area and circumference of circle',
       task: 'Create a function called "circle" that receives the radius of a circle as a parameter, and returns an object with the area and circumference as properties',
       verify: output => {
-        should(circle(8)).deepEqual({area: Math.PI * 8 * 8, circumference: 2 * 8 * Math.PI})
-        should(circle(40)).deepEqual({area: Math.PI * 40 * 40, circumference: 2 * 40 * Math.PI})
+        should(circle(8)).deepEqual({
+          area: Math.PI * 8 * 8,
+          circumference: 2 * 8 * Math.PI
+        })
+        should(circle(40)).deepEqual({
+          area: Math.PI * 40 * 40,
+          circumference: 2 * 40 * Math.PI
+        })
       },
       mode: 'vm'
     },
@@ -537,9 +549,42 @@ module.exports = {
     os: {
       title: 'The os module',
       description: 'Basic information about your computer',
-      task: 'Create a module that exports a function which upon execution logs the hostname and the architecture of your computer to the console',
+      task: 'Create a module that exports a function which returns an object with the hostname and the architecture of your computer',
       verify: output => {
-
+        const os = require('os')
+        should(output()).deepEqual({
+          hostname: os.hostname(),
+          architecture: os.arch()
+        })
+      },
+      mode: 'module'
+    },
+    path: {
+      title: 'The path module',
+      description: 'Looking for files? Go no further',
+      task: 'Create a function that returns the given path if it is absolute, false otherwise',
+      verify: output => {
+        should(output('/test/folder')).be.exactly('/test/folder')
+        should(output('/usr/bin')).be.exactly('/usr/bin')
+        should(output('.')).be.false()
+        should(output('file.txt')).be.false()
+      },
+      mode: 'module'
+    },
+    zlib: {
+      title: 'The zlib module',
+      description: 'Compression is important in CS',
+      task: 'Export two functions as an object: compress should compress data using Gzip, and decompress should then decompress the stream',
+      verify: output => {
+        const zlib = require('zlib')
+        const compressed1 = zlib.gzip(test1)
+        should(output.compress(test1)).be.exactly(compressed1)
+        should(output.decompress(compressed1)).be.exactly('test stream') const test1 = Buffer.from('test stream', 'base64')
+        const test2 = Buffer.from('test way looooooooooooonger stream', 'base64')
+        const compressed2 = zlib.gzip(test2)
+        should(output.compress(test2)).be.exactly(compressed2)
+        should(output.decompress(compressed2)).be.exactly('test way looooooooooooonger stream')
+        should(output.decompress(output.compress(test1))).be.exactly('test stream')
       },
       mode: 'module'
     }
