@@ -289,6 +289,19 @@ module.exports = {
       },
       mode: 'vm'
     },
+    factors: {
+      title: 'Prime factors',
+      description: 'Find all factors of a number',
+      task: 'Create a function called "factors" that returns an array of all prime factors of the received parameter in increasing order',
+      verify: output => {
+        should(factors(1)).eql([1])
+        should(factors(2).eql([1, 2]))
+        should(factors(4).eql([1, 2, 4]))
+        should(factors(60).eql([1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60]))
+        should(factors(100).eql([1, 2, 4, 5, 10, 20, 25, 50, 100]))
+      },
+      mode: 'vm'
+    },
     perfectnumber: {
       title: 'Perfect number',
       description: 'Find whether a number is perfect or not',
@@ -586,6 +599,19 @@ module.exports = {
         should(output.compress(test2)).be.exactly(compressed2)
         should(output.decompress(compressed2)).be.exactly('test way looooooooooooonger stream')
         should(output.decompress(output.compress(test1))).be.exactly('test stream')
+      },
+      mode: 'module'
+    },
+    {
+      title: 'Caesar cipher',
+      description: 'Encrypt and decrypt messages',
+      task: 'Export two functions as an object: encrypt should take the raw data and the key and return the encrypted data. Decrypt should do the opposite',
+      verify: output => {
+        should(output.encrypt('hello', 4)).be.exactly('lipps')
+        should(output.encrypt('world', 5)).be.exactly('btqwi')
+        should(output.decrypt('cnbc', 10)).be.exaclty('test')
+        should(output.decrypt('vnbbjpn', 9)).be.exactly('message')
+        should(output.decrypt(output.encrypt('test very long message', 13), 13)).be.exactly('test very long message')
       },
       mode: 'module'
     }
