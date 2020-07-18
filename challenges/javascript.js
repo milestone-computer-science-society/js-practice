@@ -290,9 +290,9 @@ module.exports = {
       mode: 'vm'
     },
     factors: {
-      title: 'Prime factors',
+      title: 'Factors',
       description: 'Find all factors of a number',
-      task: 'Create a function called "factors" that returns an array of all prime factors of the received parameter in increasing order',
+      task: 'Create a function called "factors" that returns an array of all factors of the received parameter in increasing order',
       verify: output => {
         should(factors(1)).eql([1])
         should(factors(2).eql([1, 2]))

@@ -30,6 +30,19 @@ addEventListener('load', async () => {
     await Show.test(editor)
   })
 
+  addEventListener('keydown', async event => {
+    const isAppleDevice = navigator.platform.indexOf('Mac') === 0 || navigator.platform.indexOf('iP') === 0
+    const shortcutKey = isAppleDevice ? event.metaKey : event.ctrlKey
+    if (shortcutKey && event.key === 's') {
+      event.preventDefault()
+      await Show.save(editor)
+    }
+    if (shortcutKey && event.key === 'e') {
+      event.preventDefault()
+      await Show.test(editor)
+    }
+  })
+
   addEventListener('beforeunload', async () => {
     if (typeof localStorage !== 'undefined' && document.querySelector('.active') !== null) {
       const suite = document.querySelector('.active').getAttribute('data-suite')
