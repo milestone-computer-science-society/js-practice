@@ -602,7 +602,7 @@ module.exports = {
       },
       mode: 'module'
     },
-    {
+    caesar: {
       title: 'Caesar cipher',
       description: 'Encrypt and decrypt messages',
       task: 'Export two functions as an object: encrypt should take the raw data and the key and return the encrypted data. Decrypt should do the opposite',
